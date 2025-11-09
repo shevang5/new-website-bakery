@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncGetUserOrders } from "../store/action/orderActions";
+import { asyncGetUserOrders, asyncCancelOrder } from "../store/action/orderActions";
 
 export default function MyOrders() {
   const dispatch = useDispatch();
@@ -109,7 +109,45 @@ return (
             ))}
           </div>
 
+          {/* Delivery info */}
+          <div className="mt-3">
+            <p>
+              <span className="font-semibold">Delivery:</span>{" "}
+              {order.deliveryType === "home" ? (
+                <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded">Home Delivery</span>
+              ) : (
+                <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Pickup</span>
+              )}
+            </p>
+
+            {order.deliveryType === "home" && order.address && (
+              <div className="mt-2 text-sm text-gray-700 bg-gray-50 p-3 rounded">
+                <div>{order.address.line1}</div>
+                <div>
+                  {order.address.city}
+                  {order.address.state ? ", " + order.address.state : ""} {order.address.postalCode}
+                </div>
+                {order.address.phone && <div>Phone: {order.address.phone}</div>}
+              </div>
+            )}
+          </div>
+
           <p className="text-sm text-gray-400 mt-3">Order ID: {order._id}</p>
+          {/* Cancel button for eligible orders */}
+          {(["pending", "processing"].includes(order.status)) && (
+            <div className="mt-3 text-right">
+              <button
+                onClick={() => {
+                  if (window.confirm("Are you sure you want to cancel this order?")) {
+                    dispatch(asyncCancelOrder(order._id));
+                  }
+                }}
+                className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-md font-semibold"
+              >
+                Cancel Order
+              </button>
+            </div>
+          )}
         </div>
       );
     })}

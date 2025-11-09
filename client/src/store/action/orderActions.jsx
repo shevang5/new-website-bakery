@@ -44,3 +44,13 @@ export const asyncUpdateOrderStatus = (id, status) => async (dispatch) => {
     dispatch(setError(error.response?.data?.message || "Failed to update order"));
   }
 };
+
+// User cancels their own order
+export const asyncCancelOrder = (id) => async (dispatch) => {
+  try {
+    const { data } = await API.put(`/orders/${id}/cancel`);
+    dispatch(updateOrder(data));
+  } catch (error) {
+    dispatch(setError(error.response?.data?.message || "Failed to cancel order"));
+  }
+};

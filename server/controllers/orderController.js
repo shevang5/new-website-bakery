@@ -72,3 +72,28 @@ export const updateOrderStatus = async (req, res) => {
   );
   res.json(order);
 };
+
+export const cancelOrder = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ message: "Order not found" });
+
+    // Only the owner can cancel
+    if (order.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "Not authorized to cancel this order" });
+    }
+
+    // Allow cancellation only when order hasn't progressed too far
+    if (!["pending", "processing"].includes(order.status)) {
+      return res.status(400).json({ message: "Order cannot be cancelled at this stage" });
+    }
+
+    order.status = "cancelled";
+    await order.save();
+
+    res.json(order);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to cancel order" });
+  }
+};

@@ -72,6 +72,29 @@ export default function AdminOrders() {
       </p>
     </div>
 
+    {/* Delivery info */}
+    <div className="mb-3">
+      <p>
+        <span className="font-semibold">Delivery:</span>{" "}
+        {order.deliveryType === "home" ? (
+          <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded">Home Delivery</span>
+        ) : (
+          <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Pickup</span>
+        )}
+      </p>
+
+      {order.deliveryType === "home" && order.address && (
+        <div className="mt-2 text-sm text-gray-700 bg-gray-50 p-3 rounded">
+          <div>{order.address.line1}</div>
+          <div>
+            {order.address.city}
+            {order.address.state ? ", " + order.address.state : ""} {order.address.postalCode}
+          </div>
+          {order.address.phone && <div>Phone: {order.address.phone}</div>}
+        </div>
+      )}
+    </div>
+
     <div className="space-y-3 mb-4">
       {order.products?.map((item) => (
         <div
