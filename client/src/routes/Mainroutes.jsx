@@ -3,9 +3,10 @@ import { Route, Routes } from 'react-router-dom'
 import Loader from '../components/Loader'
 
 // Lazy-loaded pages
-const Home = lazy(() => import('../pages/home'))
+const Home = lazy(() => import('../pages/Home'))
 const Products = lazy(() => import('../pages/Products'))
-const Login = lazy(() => import('../pages/Login'))
+const Login = lazy(() => import('../pages/auth/loginPage'))
+const ResetPassword = lazy(() => import('../pages/auth/ResetPassword'))
 const Register = lazy(() => import('../pages/register'))
 const ProductDetails = lazy(() => import('../pages/users/productDetail'))
 const CreateProduct = lazy(() => import('../pages/admin/CreateProduct'))
@@ -22,7 +23,8 @@ const Mainroutes = () => {
         <Route path='/products' element={<Products />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path="/login" element={<Login />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/reset-password/:token" element={<ResetPassword />} />
 
         <Route path="/register" element={<Register />} />
         <Route path="/myorders" element={<OrdersPage />} />
