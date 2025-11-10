@@ -51,11 +51,44 @@ const LoginPage = () => {
           <input type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
         </div>
         <div className="flex items-center justify-between mb-2">
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
-          <Link to="/register" className="text-blue-500 hover:text-blue-700">Don't have an account? Register</Link>
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Login</button>
         </div>
-        <div className="text-right">
-          <button type="button" className="text-sm text-blue-600 hover:underline" onClick={() => setShowForgot(true)}>
+        
+        <div className="mt-6 mb-4">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">Or</span>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <a
+              href="http://localhost:5000/auth/google"
+              className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.2,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,4.72C19,4.72 16.56,2 12.1,2C6.42,2 2.03,6.8 2.03,12C2.03,17.05 6.16,22 12.25,22C17.6,22 21.5,18.33 21.5,12.91C21.5,11.76 21.35,11.1 21.35,11.1V11.1Z"
+                />
+              </svg>
+              Sign in with Google
+            </a>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between mt-4">
+          <Link to="/register" className="text-blue-500 hover:text-blue-700 text-sm">
+            Don't have an account? Register
+          </Link>
+          <button 
+            type="button" 
+            className="text-sm text-blue-600 hover:underline" 
+            onClick={() => setShowForgot(true)}
+          >
             Forgot Password?
           </button>
         </div>

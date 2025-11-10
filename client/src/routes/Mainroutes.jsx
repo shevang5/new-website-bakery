@@ -8,6 +8,7 @@ const Products = lazy(() => import('../pages/Products'))
 const Login = lazy(() => import('../pages/auth/loginPage'))
 const ResetPassword = lazy(() => import('../pages/auth/ResetPassword'))
 const Register = lazy(() => import('../pages/register'))
+const AuthSuccess = lazy(() => import('../pages/auth/AuthSuccess'))
 const ProductDetails = lazy(() => import('../pages/users/productDetail'))
 const CreateProduct = lazy(() => import('../pages/admin/CreateProduct'))
 const OrdersPage = lazy(() => import('../pages/OrdersPage'))
@@ -25,7 +26,7 @@ const Mainroutes = () => {
         <Route path='/cart' element={<Cart />} />
   <Route path="/login" element={<Login />} />
   <Route path="/reset-password/:token" element={<ResetPassword />} />
-
+        <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/myorders" element={<OrdersPage />} />
         <Route path="/admin/orders" element={<AdminOrders />} />

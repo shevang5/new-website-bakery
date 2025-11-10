@@ -35,12 +35,20 @@ export const asyncCurrentUsers = () => async (dispatch) => {
   try {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
-      dispatch(loadUser(storedUser));
+      // Check if it's a valid user object with both token and user data
+      if (storedUser.token && storedUser.user) {
+        dispatch(loadUser(storedUser));
+      } else {
+        console.log("Invalid user data format");
+        localStorage.removeItem("user");
+      }
     } else {
       console.log("No user logged in");
     }
   } catch (error) {
     console.error("Error loading current user:", error);
+    // Clean up invalid data
+    localStorage.removeItem("user");
   }
 };
 
