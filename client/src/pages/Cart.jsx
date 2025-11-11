@@ -11,6 +11,7 @@ const Cart = () => {
   // delivery state: 'pickup' or 'home' (null = not chosen yet)
   const [deliveryType, setDeliveryType] = useState(null);
   const [address, setAddress] = useState({ line1: "", city: "", state: "", postalCode: "", phone: "" });
+  const [pickupInfo, setPickupInfo] = useState({ phone: "", pickTime: "" });
 
   useEffect(() => {
     fetchCart();
@@ -56,12 +57,20 @@ const Cart = () => {
       console.log(err);
     }
   };
-  const checkout = async (selectedDeliveryType = "pickup", selectedAddress = null) => {
+  const checkout = async (selectedDeliveryType = "pickup", selectedInfo = null) => {
     try {
       // basic client-side validation for home delivery
       if (selectedDeliveryType === "home") {
-        if (!selectedAddress || !selectedAddress.line1 || !selectedAddress.city || !selectedAddress.postalCode) {
+        if (!selectedInfo || !selectedInfo.line1 || !selectedInfo.city || !selectedInfo.postalCode) {
           alert("Please provide a valid delivery address (street, city, postal code).");
+          return;
+        }
+      }
+
+      // validation for pickup: require phone and pickTime
+      if (selectedDeliveryType === "pickup") {
+        if (!selectedInfo || !selectedInfo.phone || !selectedInfo.pickTime) {
+          alert("Please provide a phone number and pick-up time for pickup orders.");
           return;
         }
       }
@@ -75,7 +84,16 @@ const Cart = () => {
         deliveryType: selectedDeliveryType,
       };
 
-      if (selectedDeliveryType === "home") orderData.address = selectedAddress;
+      if (selectedDeliveryType === "home") {
+        orderData.address = selectedInfo;
+      }
+
+      if (selectedDeliveryType === "pickup") {
+        orderData.pickup = {
+          phone: selectedInfo.phone,
+          pickTime: selectedInfo.pickTime,
+        };
+      }
 
       await axios.post("/orders", orderData);
       setCart({ items: [] }); // immediate UI clear
@@ -85,6 +103,7 @@ const Cart = () => {
       // reset delivery UI
       setDeliveryType(null);
       setAddress({ line1: "", city: "", state: "", postalCode: "", phone: "" });
+      setPickupInfo({ phone: "", pickTime: "" });
     } catch (err) {
       console.log(err.response?.data || err.message);
       alert("❌ Failed to place order");
@@ -167,9 +186,8 @@ const Cart = () => {
           <div className="flex gap-3">
             <button
               onClick={() => {
-                // immediate pickup order
+                // show pickup form instead of immediate checkout
                 setDeliveryType("pickup");
-                checkout("pickup", null);
               }}
               className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold"
             >
@@ -236,6 +254,42 @@ const Cart = () => {
                 </div>
                 <div className="text-right">
                   <button type="submit" className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold">Place Order</button>
+                </div>
+              </form>
+            )}
+
+            {deliveryType === "pickup" && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  checkout("pickup", pickupInfo);
+                }}
+                className="bg-white p-4 rounded-lg shadow-sm"
+              >
+                <div className="mb-2">
+                  <label className="block text-sm font-medium text-gray-700">Phone</label>
+                  <input
+                    required
+                    value={pickupInfo.phone}
+                    onChange={(e) => setPickupInfo((s) => ({ ...s, phone: e.target.value }))}
+                    className="mt-1 w-full border px-3 py-2 rounded"
+                    placeholder="Your phone number"
+                  />
+                </div>
+
+                <div className="mb-2">
+                  <label className="block text-sm font-medium text-gray-700">Pick-up Time</label>
+                  <input
+                    required
+                    type="datetime-local"
+                    value={pickupInfo.pickTime}
+                    onChange={(e) => setPickupInfo((s) => ({ ...s, pickTime: e.target.value }))}
+                    className="mt-1 w-full border px-3 py-2 rounded"
+                  />
+                </div>
+
+                <div className="text-right">
+                  <button type="submit" className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold">Place Pickup Order</button>
                 </div>
               </form>
             )}

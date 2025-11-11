@@ -75,14 +75,7 @@ const ProductDetail = () => {
 
         {/* Right - Product Details */}
         <div className="space-y-6 p-8 rounded-3xl bg-white shadow-md">
-          <h2 className="text-4xl font-extrabold text-pink-700">
-            {product.name}
-          </h2>
-          <p className="text-xl text-gray-500 capitalize">{product.category}</p>
-          <p className="text-2xl text-yellow-600 font-semibold">
-            ${product.price}
-          </p>
-          <p className="text-gray-700 text-lg">{product.description}</p>
+          
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 mt-6">
@@ -203,6 +196,14 @@ const ProductDetail = () => {
               </form>
             </div>
           )}
+          <h2 className="text-4xl font-extrabold text-pink-700">
+            {product.name}
+          </h2>
+          <p className="text-xl text-gray-500 capitalize">{product.category}</p>
+          <p className="text-2xl text-yellow-600 font-semibold">
+            ${product.price}
+          </p>
+          <p className="text-gray-700 text-lg">{product.description}</p>
         </div>
       </div>
     </div>

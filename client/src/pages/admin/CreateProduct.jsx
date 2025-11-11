@@ -8,6 +8,7 @@ const CreateProduct = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm()
 
@@ -15,6 +16,7 @@ const CreateProduct = () => {
 
   const onSubmit = (product) => {
   product.id = nanoid();
+  
 
   // Fix: extract the actual file from the FileList
   if (product.image && product.image.length > 0) {
@@ -23,6 +25,8 @@ const CreateProduct = () => {
 
   dispatch(asyncCreateProduct(product));
   console.log('Form Data:', product);
+  alert('Product created successfully!');
+  reset();
 };
 
   return (
@@ -50,11 +54,17 @@ const CreateProduct = () => {
             className="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select a category</option>
-            <option value="furniture">Furniture</option>
-            <option value="clothing">Clothing</option>
-            <option value="electronics">Electronics</option>
-            <option value="toys">Toys</option>
-            <option value="other">Other</option>
+<option value="breads">Breads</option>
+<option value="pastries">Pastries</option>
+<option value="cakes-cupcakes">Cakes & Cupcakes</option>
+<option value="cookies">Cookies</option>
+<option value="pies-tarts">Pies & Tarts</option>
+<option value="donuts">Donuts & Fried Treats</option>
+<option value="breakfast-savory">Breakfast & Savory Items</option>
+<option value="drinks">Drinks</option>
+<option value="seasonal-specialty">Seasonal & Specialty Items</option>
+<option value="other">Other</option>
+
           </select>
           {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
         </div>
@@ -94,7 +104,7 @@ const CreateProduct = () => {
     type="file"
     placeholder="image.jpg"
     {...register('image', { required: 'Image file is required' })}
-    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+    className="mt-1 block w-full p-3 border-2 border-black rounded-md  shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
   />
   {errors.image && (
     <p className="text-red-500 text-sm">{errors.image.message}</p>

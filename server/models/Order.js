@@ -21,6 +21,10 @@ const orderSchema = new mongoose.Schema({
     postalCode: { type: String },
     phone: { type: String },
   },
+  pickup: {
+    phone: { type: String },
+    pickTime: { type: Date }
+  },
   status: {
     type: String,
     enum: ["pending", "processing", "shipped", "delivered", "cancelled"],

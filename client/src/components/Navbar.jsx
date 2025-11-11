@@ -41,18 +41,30 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-yellow-50 shadow-lg rounded-3xl px-4 py-3 flex flex-col md:flex-row justify-between items-center mb-8">
+    <nav className=" shadow-lg rounded-3xl md:px-28 px-3 py-3 flex flex-col md:flex-row justify-between items-center 
+    ">
       <div className="w-full flex justify-between items-center">
-        <span className="text-2xl md:text-3xl font-extrabold text-brown-900 tracking-wide">ROLLIN.</span>
+        <span className="text-2xl md:text-3xl text-red-500 font-extrabold text-brown-900 tracking-wide">BAKE AND COFFEE.</span>
+        <div className="flex items-center gap-2">
+        <NavLink to="/cart" className="relative flex md:hidden items-center group" onClick={() => setMenuOpen(false)}>
+            <span className="flex w-8 h-8 bg-yellow-200 rounded-full items-center justify-center mr-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-brown-900"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3h12.2a1 1 0 00.9-1.3L17 13M7 13V6h13" /></svg>
+            </span>
+            {/* <span className="text-brown-900 font-semibold">Cart</span> */}
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-2 text-xs font-bold shadow-lg">{cartCount}</span>
+            )}
+          </NavLink>
         <button className="md:hidden p-2 rounded-full bg-yellow-200" onClick={() => setMenuOpen(!menuOpen)}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-brown-900"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>
+        </div>
       </div>
       {/* Desktop menu */}
       <div className="hidden md:flex w-full justify-between items-center mt-4 md:mt-0">
         <div className="flex items-center gap-6">
           <NavLink to="/" className={({ isActive }) => isActive ? "text-yellow-600 font-bold" : "text-brown-900 hover:text-yellow-600 font-semibold"}>Cake</NavLink>
-          <NavLink to="/products" className={({ isActive }) => isActive ? "text-yellow-600 font-bold" : "text-brown-900 hover:text-yellow-600 font-semibold"}>Bakery</NavLink>
+          <NavLink to="/products" className={({ isActive }) => isActive ? "text-yellow-600 font-bold" : "text-brown-900 hover:text-yellow-600 font-semibold"}>Menu</NavLink>
           <NavLink to="/about" className={({ isActive }) => isActive ? "text-yellow-600 font-bold" : "text-brown-900 hover:text-yellow-600 font-semibold"}>About Us</NavLink>
           <NavLink to="/cookies" className={({ isActive }) => isActive ? "text-yellow-600 font-bold" : "text-brown-900 hover:text-yellow-600 font-semibold"}>Cookies</NavLink>
           <NavLink to="/contact" className={({ isActive }) => isActive ? "text-yellow-600 font-bold" : "text-brown-900 hover:text-yellow-600 font-semibold"}>Contact</NavLink>
@@ -128,7 +140,7 @@ const Navbar = () => {
               <NavLink to="/register" className="bg-white hover:bg-yellow-100 text-brown-900 font-bold py-2 px-4 rounded-full shadow transition">Register</NavLink>
             </div>
           )}
-          <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow transition ml-4">Start Baking</button>
+          {/* <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow transition ml-4">Start Baking</button> */}
         </div>
       </div>
       {/* Mobile menu */}
@@ -171,7 +183,7 @@ const Navbar = () => {
               
               {/* Mobile Profile Menu */}
               {profileOpen && (
-                <div className="bg-white rounded-2xl shadow-xl p-4 mt-2">
+                <div className="bg-white z-50 rounded-2xl shadow-xl p-4 mt-2">
                   <div className="border-b border-gray-100 pb-4 mb-4">
                     <p className="text-lg font-bold text-brown-900">{user.name}</p>
                     <p className="text-sm text-gray-600">{user.email}</p>
@@ -212,7 +224,7 @@ const Navbar = () => {
               <NavLink to="/register" className="bg-white hover:bg-yellow-100 text-brown-900 font-bold py-2 px-4 rounded-full shadow transition">Register</NavLink>
             </div>
           )}
-          <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow transition mt-4">Start Baking</button>
+          
         </div>
       )}
     </nav>

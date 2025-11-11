@@ -8,23 +8,26 @@ export default function AdminOrders() {
   const [loading, setLoading] = useState(true);
 
   const fetchOrders = async () => {
-  try {
-    const { data } = await axios.get("/orders"); // Admin-only endpoint
+    try {
+      const { data } = await axios.get("/orders"); // Admin-only endpoint
 
-    // ✅ Sort so pending orders appear first
-    const sorted = [...data].sort((a, b) => {
-      if (a.status === "pending" && b.status !== "pending") return -1;
-      if (a.status !== "pending" && b.status === "pending") return 1;
-      return 0;
-    });
+      // Sort orders: pending first, then by creation date (newest first)
+      const sorted = [...data].sort((a, b) => {
+        // If one is pending and the other is not, pending comes first
+        if (a.status === "pending" && b.status !== "pending") return -1;
+        if (a.status !== "pending" && b.status === "pending") return 1;
+        
+        // If both have the same status, sort by creation date (newest first)
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
 
-    setOrders(sorted);
-    setLoading(false);
-  } catch (err) {
-    console.error(err);
-    setLoading(false);
-  }
-};
+      setOrders(sorted);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+    }
+  };
 
 
   useEffect(() => {
@@ -52,15 +55,14 @@ export default function AdminOrders() {
       <h1 className="text-3xl font-bold mb-6 text-center">Admin Orders</h1>
 
       {orders.map((order) => (
-  <div
-    key={order._id}
-    className={`p-4 mb-6 rounded shadow-md border
-      ${
-        order.status === "pending"
-          ? "bg-yellow-100 border-yellow-400"
-          : "bg-white"
-      }`}
-  >
+        <div
+          key={order._id}
+          className={"relative p-4 mb-6 rounded shadow-md border " + (order.status === "pending" ? "bg-yellow-100 border-yellow-400" : "bg-white")}
+        >
+          {/* created time small light text in corner */}
+          {order.createdAt && (
+            <p className="absolute bottom-1 left-4 text-xs text-gray-400">{new Date(order.createdAt).toLocaleString()}</p>
+          )}
     <div className="flex justify-between items-center mb-4">
       <p>
         <span className="font-semibold">User:</span>{" "}
@@ -79,7 +81,15 @@ export default function AdminOrders() {
         {order.deliveryType === "home" ? (
           <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded">Home Delivery</span>
         ) : (
-          <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Pickup</span>
+          <span className="inline-flex items-center">
+            <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Pickup</span>
+            {order.pickup?.pickTime && (
+              <>
+              <span className="ml-3 text-sm text-gray-800 bg-white px-2 py-1 rounded font-medium">{new Date(order.pickup.pickTime).toLocaleString()}</span>
+              <span className="ml-3 text-sm text-gray-800 bg-white px-2 py-1 rounded font-medium">Phone: {order.pickup.phone}</span>
+              </>
+            )}
+          </span>
         )}
       </p>
 

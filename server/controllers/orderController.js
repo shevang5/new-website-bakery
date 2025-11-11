@@ -4,7 +4,7 @@ import Cart from "../models/Cart.js";
 
 export const createOrder = async (req, res) => {
   try {
-    const { products, total, deliveryType, address } = req.body;
+    const { products, total, deliveryType, address, pickup } = req.body;
 
     // Validate products
     if (!products || !products.length) {
@@ -18,6 +18,13 @@ export const createOrder = async (req, res) => {
       }
     }
 
+    // If pickup requested, ensure pickup info is provided
+    if (deliveryType === "pickup") {
+      if (!pickup || !pickup.phone || !pickup.pickTime) {
+        return res.status(400).json({ message: "Phone number and pick-up time are required for pickup orders" });
+      }
+    }
+
     // Create order (include delivery fields if provided)
     const orderPayload = {
       user: req.user._id,
@@ -26,7 +33,14 @@ export const createOrder = async (req, res) => {
       deliveryType: deliveryType || "pickup",
     };
 
-    if (deliveryType === "home") orderPayload.address = address;
+    if (deliveryType === "home") {
+      orderPayload.address = address;
+    } else if (deliveryType === "pickup") {
+      orderPayload.pickup = {
+        phone: pickup.phone,
+        pickTime: new Date(pickup.pickTime)
+      };
+    }
 
     const order = await Order.create(orderPayload);
 
