@@ -113,7 +113,7 @@ const Cart = () => {
 
   if (!cart || cart.items.length === 0)
     return (
-      <div className="text-center py-16 text-gray-500">
+      <div className="text-center text-2xl py-16 text-gray-500">
         🛒 Your cart is empty.
         <br />
         <Link to="/products" className="text-blue-600 underline">Go Shopping</Link>
@@ -145,11 +145,12 @@ const Cart = () => {
             />
 
             <div className="w-1/3">
-              <h2 className="font-semibold text-lg">{item.product.name}</h2>
+              <h2 className="font-semibold text-sm md:text-lg">{item.product.name}</h2>
               <p className="text-gray-600">${item.product.price}</p>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="md:flex gap-3 flex md:flex-row flex-col"> 
+              <div className="flex items-center space-x-2">
               <button
                 onClick={() => updateQty(item._id, "dec")}
                 className={`px-3 py-1 rounded ${updatingIds[item._id] ? 'bg-gray-300 cursor-wait' : 'bg-gray-200 hover:bg-gray-300'}`}
@@ -173,6 +174,7 @@ const Cart = () => {
             >
               Remove
             </button>
+            </div>
           </div>
         )
       })}
@@ -181,28 +183,28 @@ const Cart = () => {
         Total: <span className="text-green-600">${total}</span>
       </div>
 
-      <div className="mt-6 w-full">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div className="flex gap-3">
+      <div className=" w-full">
+        <div className="flex relative flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex mt-6  absolute right-0 gap-3">
             <button
               onClick={() => {
                 // show pickup form instead of immediate checkout
                 setDeliveryType("pickup");
               }}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold"
+              className="  px-4 py-2  bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold"
             >
               🚶 Pickup
             </button>
 
             <button
               onClick={() => setDeliveryType("home")}
-              className="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-brown-900 rounded-lg font-semibold"
+              className=" px-4 py-2 bg-amber-400 hover:bg-amber-500 text-brown-900 rounded-lg font-semibold"
             >
               🏠 Home Delivery
             </button>
           </div>
 
-          <div className="w-full md:w-1/2">
+          <div className="w-full mt-14 md:w-1/2">
             {deliveryType === "home" && (
               <form
                 onSubmit={(e) => {

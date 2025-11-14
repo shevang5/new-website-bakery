@@ -29,9 +29,9 @@ const Blog = () => {
               />
             </figure>
             <div className="p-6 flex flex-col gap-3">
-              <h5 className="text-xl font-semibold text-amber-700">Buffet Service</h5>
+              <h5 className="text-xl font-semibold text-amber-700">Fresh Pastries</h5>
               <p className="text-base-content/70 leading-relaxed mb-4">
-                Experience variety and flavor with our buffet selection — crafted fresh and served with care.
+                Hand-crafted pastries baked daily — warm, flaky, and made with premium ingredients.
               </p>
               <a
                 href="#"
@@ -45,19 +45,19 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Card 2 */}
+          {/* Card 2 — UPDATED */}
           <div className="group bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-amber-100">
             <figure className="overflow-hidden">
               <img
                 src="https://demos.flyonui.com/templates/assets/img/free-landing-page/free-blog-2.png"
-                alt="Food Delivery"
+                alt="Pickup & Delivery"
                 className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </figure>
             <div className="p-6 flex flex-col gap-3">
-              <h5 className="text-xl font-semibold text-amber-700">Food Delivery</h5>
+              <h5 className="text-xl font-semibold text-amber-700">Pickup & Delivery</h5>
               <p className="text-base-content/70 leading-relaxed mb-4">
-                Delicious meals, delivered hot and fast — from our kitchen straight to your doorstep.
+                Grab your favorites on the go or enjoy fast delivery straight to your doorstep — fresh and quick.
               </p>
               <a
                 href="#"
@@ -81,9 +81,9 @@ const Blog = () => {
               />
             </figure>
             <div className="p-6 flex flex-col gap-3">
-              <h5 className="text-xl font-semibold text-amber-700">Cafeteria</h5>
+              <h5 className="text-xl font-semibold text-amber-700">Café Experience</h5>
               <p className="text-base-content/70 leading-relaxed mb-4">
-                Cozy atmosphere, premium brews, and delightful treats — your perfect cafe escape awaits.
+                Enjoy a cozy vibe, handcrafted coffee, and a relaxing space to unwind or work.
               </p>
               <a
                 href="#"
@@ -96,6 +96,7 @@ const Blog = () => {
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </section>

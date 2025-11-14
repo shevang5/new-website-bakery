@@ -1,49 +1,83 @@
-import React from 'react'
+import React from "react";
 
 const Team = () => {
-   return (
-        <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl font-bold max-w-[740px] mb-[72px]">Trusted by <span className="text-blue-600">30k+</span> world class companies & design teams</h1>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-                <div className="flex flex-col items-center bg-white px-3 py-8 rounded-lg border border-gray-300/80 max-w-[272px] text-sm text-center text-gray-500">
-                    <div className="relative mb-4">
-                        <img className="h-16 w-16 rounded-full" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage1.png" alt="userImage1" />
-                        <svg className="absolute top-0 -right-2" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10.5" cy="10.5" r="8.5" fill="#2563EB"/>
-                            <path d="m11.584 13.872 1.752-3.288 1.104-.288a2.7 2.7 0 0 1-.432.576.76.76 0 0 1-.552.24q-.672 0-1.248-.576t-.576-1.464q0-.936.624-1.584.648-.672 1.584-.672.888 0 1.536.672.672.648.672 1.584 0 .384-.168.912-.144.504-.576 1.296l-1.92 3.552zm-5.4 0 1.752-3.288 1.08-.288a2.2 2.2 0 0 1-.408.576.76.76 0 0 1-.552.24q-.696 0-1.272-.576t-.576-1.464q0-.936.624-1.584.648-.672 1.584-.672.888 0 1.536.672.672.648.672 1.584 0 .384-.144.912-.144.504-.576 1.296L7.96 14.832z" fill="#fff"/>
-                        </svg>
-                    </div>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  aliquip”</p>
-                    <p className="text-lg text-gray-800 font-medium mt-5">Donald Jackman</p>
-                    <p className="text-xs">Content Creator</p>
-                </div>
-                <div className="flex flex-col items-center bg-white px-3 py-8 rounded-lg border border-gray-300/80 max-w-[272px] text-sm text-center text-gray-500">
-                    <div className="relative mb-4">
-                        <img className="h-16 w-16 rounded-full" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage2.png" alt="userImage2" />
-                        <svg className="absolute top-0 -right-2" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10.5" cy="10.5" r="8.5" fill="#2563EB"/>
-                            <path d="m11.584 13.872 1.752-3.288 1.104-.288a2.7 2.7 0 0 1-.432.576.76.76 0 0 1-.552.24q-.672 0-1.248-.576t-.576-1.464q0-.936.624-1.584.648-.672 1.584-.672.888 0 1.536.672.672.648.672 1.584 0 .384-.168.912-.144.504-.576 1.296l-1.92 3.552zm-5.4 0 1.752-3.288 1.08-.288a2.2 2.2 0 0 1-.408.576.76.76 0 0 1-.552.24q-.696 0-1.272-.576t-.576-1.464q0-.936.624-1.584.648-.672 1.584-.672.888 0 1.536.672.672.648.672 1.584 0 .384-.144.912-.144.504-.576 1.296L7.96 14.832z" fill="#fff"/>
-                        </svg>
-                    </div>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  aliquip”</p>
-                    <p className="text-lg text-gray-800 font-medium mt-5">Richard Nelson</p>
-                    <p className="text-xs">Content Writer</p>
-                </div>
-                <div className="flex flex-col items-center bg-white px-3 py-8 rounded-lg border border-gray-300/80 max-w-[272px] text-sm text-center text-gray-500">
-                    <div className="relative mb-4">
-                        <img className="h-16 w-16 rounded-full" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage3.png" alt="userImage3" />
-                        <svg className="absolute top-0 -right-2" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10.5" cy="10.5" r="8.5" fill="#2563EB"/>
-                            <path d="m11.584 13.872 1.752-3.288 1.104-.288a2.7 2.7 0 0 1-.432.576.76.76 0 0 1-.552.24q-.672 0-1.248-.576t-.576-1.464q0-.936.624-1.584.648-.672 1.584-.672.888 0 1.536.672.672.648.672 1.584 0 .384-.168.912-.144.504-.576 1.296l-1.92 3.552zm-5.4 0 1.752-3.288 1.08-.288a2.2 2.2 0 0 1-.408.576.76.76 0 0 1-.552.24q-.696 0-1.272-.576t-.576-1.464q0-.936.624-1.584.648-.672 1.584-.672.888 0 1.536.672.672.648.672 1.584 0 .384-.144.912-.144.504-.576 1.296L7.96 14.832z" fill="#fff"/>
-                        </svg>
-                    </div>
-                    <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  aliquip”</p>
-                    <p className="text-lg text-gray-800 font-medium mt-5">James Washington</p>
-                    <p className="text-xs">Content Marketing</p>
-                </div>
-            </div>
+  return (
+    <section className="bg-gradient-to-b from-amber-50 via-white to-rose-50 py-16 lg:py-28" id="team">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-amber-800 tracking-tight">
+            Meet Our Team
+          </h2>
+          <p className="mt-4 text-base-content/70 text-lg max-w-2xl mx-auto">
+            The friendly faces behind Bake & Coffee — dedicated to serving fresh pastries, handcrafted drinks, 
+            and warm hospitality every day.
+          </p>
         </div>
-    );
-}
 
-export default Team
+        {/* Team Grid */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          
+          {/* Team Member 1 */}
+          <div className="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-amber-100">
+            <div className="overflow-hidden">
+              <img
+                src="https://scontent.cdninstagram.com/v/t51.82787-15/573597993_18529297783038154_5475863005890745882_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=Mzc2MDIwNTg1NjI1NzQ4MDY5Nw%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEzNjR4OTA4LnNkci5DMyJ9&_nc_ohc=1ekkvou-35UQ7kNvwE9poGx&_nc_oc=Adl5H5evAkWebEbF1Ah4bNBCDB9rvHsL0waux3uxgwRuyFdKYNjq3b9ITSO2N5tZfmMSQxGGpcJsI5Ze65Wit5KA&_nc_ad=z-m&_nc_cid=1012&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=GiNU-trcnqvnHD1pbN2JJQ&oh=00_AfjK-Euw_M-jLXGIzRAF5118NzoB9KIHJny0zfvGT3HMxg&oe=691C2B52"
+                alt="Team Member"
+                className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-amber-700">Sarah Martinez</h3>
+              <p className="text-base-content/70">Head Barista</p>
+              <p className="mt-3 text-base-content/60 text-sm">
+                Specializes in handcrafted espresso drinks with a passion for latte art.
+              </p>
+            </div>
+          </div>
+
+          {/* Team Member 2 */}
+          <div className="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-amber-100">
+            <div className="overflow-hidden">
+              <img
+                src="https://scontent.cdninstagram.com/v/t51.82787-15/573422682_18529297768038154_3333250594448579702_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ig_cache_key=Mzc2MDIwNTg1NjU0MjcwODAzNQ%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEzNjR4OTA4LnNkci5DMyJ9&_nc_ohc=Ncl992_x8R0Q7kNvwGHgQpC&_nc_oc=Adl54sEAJhVfPBPti2eXxQrLWyozA-cs7VWsAEdemFTrrmtH4U-lNmo6hU1p3n0HmbqyuW2s6ImNukASTlYwbkhS&_nc_ad=z-m&_nc_cid=1012&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=GiNU-trcnqvnHD1pbN2JJQ&oh=00_AfgX3OmEx0M6o-sVTX9D9FLKKRXVK2o9rbuQxsbmHenkzg&oe=691C29C8"
+                alt="Team Member"
+                className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-amber-700">Jason Reed</h3>
+              <p className="text-base-content/70">Pastry Chef</p>
+              <p className="mt-3 text-base-content/60 text-sm">
+                Creator of our fresh-baked croissants, bagels, and signature pastries.
+              </p>
+            </div>
+          </div>
+
+          {/* Team Member 3 */}
+          <div className="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-amber-100">
+            <div className="overflow-hidden">
+              <img
+                src="https://scontent.cdninstagram.com/v/t51.82787-15/576012365_18529297840038154_63247589698536070_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ig_cache_key=Mzc2MDIwNTg1NjU0Mjc1MjM5Mg%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEzNjR4OTA4LnNkci5DMyJ9&_nc_ohc=mzW-xuAlHa4Q7kNvwH8OahI&_nc_oc=AdnxFi7--wV0OGrDP0LIcA1QCHFK-GBib2SqFBZJ5xgzgKoidfKf076laIM4nWv327pO8cuZYBBosEltdGgSET6q&_nc_ad=z-m&_nc_cid=1012&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=GiNU-trcnqvnHD1pbN2JJQ&oh=00_AfjQtxjEaeQnvskMf37CLeH6l0E9Sv-EcAwxIlxvmDSh8A&oe=691C587F"
+                alt="Team Member"
+                className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-semibold text-amber-700">Emily Johnson</h3>
+              <p className="text-base-content/70">Store Manager</p>
+              <p className="mt-3 text-base-content/60 text-sm">
+                Ensures every customer feels welcome and every visit runs smoothly.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Team;
+

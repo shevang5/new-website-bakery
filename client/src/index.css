@@ -15,10 +15,10 @@ body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvet
 }
 
 /* tailwind intersect */
-@import 'tailwindcss-intersect';
+/* @import 'tailwindcss-intersect'; */
 
 /* tailwind motion */
-@plugin "tailwindcss-motion";
+/* @plugin "tailwindcss-motion"; */
 
 /* Flatpickr */
-@import 'flyonui/src/vendor/flatpickr.css';
+/* @import 'flyonui/src/vendor/flatpickr.css'; */

@@ -33,7 +33,7 @@ const FAQs = () => {
             <div className="max-w-4xl lg:mb-20 mx-auto flex flex-col md:flex-row items-start justify-center gap-8 px-4 md:px-0">
                 <img
                     className="max-w-sm w-full rounded-xl h-auto"
-                    src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&w=830&h=844&auto=format&fit=crop"
+                    src="https://scontent.cdninstagram.com/v/t51.82787-15/575791122_17849954337590072_1873407875894505762_n.heic?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=Mzc1OTU2MjYzOTQwNDUxMTMzNw%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTQ0MC5zZHIuQzMifQ%3D%3D&_nc_ohc=bNvlrlSh8GMQ7kNvwEkw8BI&_nc_oc=AdkgAy0QmHLY1-iqAOi3pfq5EbsQeN0btTF3SmyDf49wlxNROtwL_6q8Zf4lTHenk6pnQrdd7aZLuHod0zUygbAY&_nc_ad=z-m&_nc_cid=1012&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=GiNU-trcnqvnHD1pbN2JJQ&oh=00_AfgCNcru_HHYxTwEAFb0Zidb8SoxR71EVBKAOJrTvdX_dw&oe=691C4EA8"
                     alt=""
                 />
                 <div>

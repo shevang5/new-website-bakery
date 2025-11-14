@@ -97,6 +97,8 @@ const Navbar = () => {
         </div> */}
 
         {/* Cart */}
+        {user?.role === "user" && (
+
         <NavLink to="/cart" className="relative cursor-pointer">
           <svg width="18" height="18" viewBox="0 0 14 14" fill="none">
             <path
@@ -112,13 +114,14 @@ const Navbar = () => {
             </button>
           )}
         </NavLink>
+        )}
 
         {/* Profile / Auth */}
         {user ? (
           <div className="relative" ref={profileRef}>
             <button
               onClick={() => setProfileOpen(!profileOpen)}
-              className="flex items-center gap-2 bg-yellow-100 hover:bg-yellow-200 text-brown-900 font-bold py-2 px-4 rounded-full shadow transition"
+              className="flex z-50 items-center gap-2 bg-yellow-100 hover:bg-yellow-200 text-brown-900 font-bold py-2 px-4 rounded-full shadow transition"
             >
               <span className="w-8 h-8 bg-yellow-300 rounded-full flex items-center justify-center text-lg">
                 {user.name?.charAt(0)?.toUpperCase() || "U"}
@@ -128,7 +131,7 @@ const Navbar = () => {
 
             {/* Dropdown */}
             <div
-              className={`absolute right-0 top-full mt-3 w-64 bg-white rounded-2xl shadow-xl transform transition-all duration-300 ease-in-out ${
+              className={`absolute z-50 right-0 top-full mt-3 w-64 bg-white rounded-2xl shadow-xl transform transition-all duration-300 ease-in-out ${
                 profileOpen
                   ? "translate-y-0 opacity-100"
                   : "translate-y-4 opacity-0 pointer-events-none"
@@ -177,10 +180,29 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Button */}
+      {user?.role === "user" && (
+
+      <NavLink to="/cart" className="md:hidden absolute top-6 right-15 cursor-pointer">
+          <svg width="18" height="18" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
+              stroke="#615fff"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          {cartCount > 0 && (
+            <button className="absolute -right-2 -top-3 text-xs text-white bg-red-500 w-[18px] h-[18px] rounded-full">
+              {cartCount}
+            </button>
+          )}
+        </NavLink>
+      )}
+      
       <button
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Menu"
-        className="sm:hidden"
+        className="sm:hidden z-50"
       >
         <svg width="21" height="15" viewBox="0 0 21 15" fill="none">
           <rect width="21" height="1.5" rx=".75" fill="#426287" />
@@ -193,7 +215,7 @@ const Navbar = () => {
       <div
         className={`${
           menuOpen ? "flex" : "hidden"
-        } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
+        } absolute z-50 top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
       >
         <NavLink to="/" onClick={() => setMenuOpen(false)}>
           Home
@@ -216,19 +238,29 @@ const Navbar = () => {
             </NavLink>
           </>
         )}
+        {user?.role === "user" && (
+
         <NavLink to="/cart" onClick={() => setMenuOpen(false)}>
           Cart ({cartCount})
         </NavLink>
+        )}
         {user ? (
+        <div className="flex justify-between items-center w-full" >
+
+        <div className="py-2 px-4 border-3  rounded-full border-gray-100">
+                <p className="text-sm  text-brown-900">Name : {user.name}</p>
+                <p className="text-sm text-gray-600">Email : {user.email}</p>
+              </div>
           <button
             onClick={() => {
               setMenuOpen(false);
               logout();
             }}
-            className="cursor-pointer px-6 py-2 mt-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm"
-          >
+            className="cursor-pointer px-6 h-10 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm"
+            >
             Logout
           </button>
+            </div>
         ) : (
           <>
             <NavLink
