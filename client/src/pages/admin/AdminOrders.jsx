@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../api/config";
 
-const statusOptions = ["pending", "processing", "shipped", "delivered", "cancelled"];
+const statusOptions = ["pending", "processing", "shipped", "cancelled", "delivered"];
 
 const statusStyles = {
   pending: { active: "bg-yellow-500 text-white ring-2 ring-yellow-300", inactive: "bg-yellow-50 text-yellow-700 border border-yellow-200 hover:bg-yellow-100" },
   processing: { active: "bg-blue-500 text-white ring-2 ring-blue-300", inactive: "bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100" },
   shipped: { active: "bg-purple-500 text-white ring-2 ring-purple-300", inactive: "bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100" },
-  delivered: { active: "bg-green-500 text-white ring-2 ring-green-300", inactive: "bg-green-50 text-green-700 border border-green-200 hover:bg-green-100" },
   cancelled: { active: "bg-red-500 text-white ring-2 ring-red-300", inactive: "bg-red-50 text-red-700 border border-red-200 hover:bg-red-100" },
+  delivered: { active: "bg-green-500 text-white ring-2 ring-green-300", inactive: "bg-green-50 text-green-700 border border-green-200 hover:bg-green-100" },
 };
 
 export default function AdminOrders() {

@@ -75,22 +75,22 @@ const ProductDetail = () => {
 
         {/* Right - Product Details */}
         <div className="space-y-6 p-8 rounded-3xl bg-white shadow-md">
-          
+
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 mt-6">
             <button onClick={async (e) => {
-                e.preventDefault();
-                try {
-                  const { data } = await axios.post("/cart", { productId: product._id });
-                  // update redux cart so Navbar badge updates immediately
-                  dispatch(loadCart(data));
-                  alert("✅ Added to Cart");
-                } catch (err) {
-                  console.log(err);
-                  alert("❌ Please login first");
-                }
-              }} className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-6 rounded-full transition duration-300 shadow-md">
+              e.preventDefault();
+              try {
+                const { data } = await axios.post("/cart", { productId: product._id });
+                // update redux cart so Navbar badge updates immediately
+                dispatch(loadCart(data));
+                alert("✅ Added to Cart");
+              } catch (err) {
+                console.log(err);
+                alert("❌ Please login first");
+              }
+            }} className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-6 rounded-full transition duration-300 shadow-md">
               🛒 Add to Cart
             </button>
             <button className="bg-red-200 hover:bg-red-300 text-red-700 font-semibold py-2 px-5 rounded-full transition duration-300">
@@ -113,7 +113,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Edit Form */}
-          {user?.user?.role === "admin" &&(
+          {user?.user?.role === "admin" && (
             <div className="mt-10 p-6 bg-gray-100 rounded-2xl shadow-md space-y-4 w-full">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">
                 Edit Product
@@ -137,6 +137,7 @@ const ProductDetail = () => {
                   </label>
                   <input
                     type="number"
+                    step="any"
                     defaultValue={product.price}
                     {...register("price", { required: "Price is required" })}
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300"

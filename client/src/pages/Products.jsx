@@ -10,7 +10,7 @@ const Products = () => {
       try {
         const res = await axios.get("http://localhost:5000/api/products");
         console.log(res);
-        
+
         setProducts(res.data);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -20,8 +20,8 @@ const Products = () => {
   }, []);
 
   const storedUser = JSON.parse(localStorage.getItem("user"));
-const token = storedUser?.token;
-console.log("Token being sent:", token);
+  const token = storedUser?.token;
+  console.log("Token being sent:", token);
 
   const renderProduct = products.map((product) => (
     <div key={product._id} className="h-full">

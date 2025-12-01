@@ -15,19 +15,19 @@ const CreateProduct = () => {
   const dispatch = useDispatch()
 
   const onSubmit = (product) => {
-  product.id = nanoid();
-  
+    product.id = nanoid();
 
-  // Fix: extract the actual file from the FileList
-  if (product.image && product.image.length > 0) {
-    product.image = product.image[0];
-  }
 
-  dispatch(asyncCreateProduct(product));
-  console.log('Form Data:', product);
-  alert('Product created successfully!');
-  reset();
-};
+    // Fix: extract the actual file from the FileList
+    if (product.image && product.image.length > 0) {
+      product.image = product.image[0];
+    }
+
+    dispatch(asyncCreateProduct(product));
+    console.log('Form Data:', product);
+    alert('Product created successfully!');
+    reset();
+  };
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
@@ -54,16 +54,16 @@ const CreateProduct = () => {
             className="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select a category</option>
-<option value="breads">Breads</option>
-<option value="pastries">Pastries</option>
-<option value="cakes-cupcakes">Cakes & Cupcakes</option>
-<option value="cookies">Cookies</option>
-<option value="pies-tarts">Pies & Tarts</option>
-<option value="donuts">Donuts & Fried Treats</option>
-<option value="breakfast-savory">Breakfast & Savory Items</option>
-<option value="drinks">Drinks</option>
-<option value="seasonal-specialty">Seasonal & Specialty Items</option>
-<option value="other">Other</option>
+            <option value="breads">Breads</option>
+            <option value="pastries">Pastries</option>
+            <option value="cakes-cupcakes">Cakes & Cupcakes</option>
+            <option value="cookies">Cookies</option>
+            <option value="pies-tarts">Pies & Tarts</option>
+            <option value="donuts">Donuts & Fried Treats</option>
+            <option value="breakfast-savory">Breakfast & Savory Items</option>
+            <option value="drinks">Drinks</option>
+            <option value="seasonal-specialty">Seasonal & Specialty Items</option>
+            <option value="other">Other</option>
 
           </select>
           {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
@@ -74,6 +74,7 @@ const CreateProduct = () => {
           <label className="block text-sm font-medium text-gray-700">Price</label>
           <input
             type="number"
+            step="any"
             {...register('price', {
               required: 'Price is required',
               valueAsNumber: true,
@@ -97,19 +98,19 @@ const CreateProduct = () => {
           {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
         </div>
 
-       {/* Image URL Input */}
-<div>
-  <label className="block text-sm font-medium text-gray-700">Image URL</label>
-  <input
-    type="file"
-    placeholder="image.jpg"
-    {...register('image', { required: 'Image file is required' })}
-    className="mt-1 block w-full p-3 border-2 border-black rounded-md  shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-  />
-  {errors.image && (
-    <p className="text-red-500 text-sm">{errors.image.message}</p>
-  )}
-</div>
+        {/* Image URL Input */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Image URL</label>
+          <input
+            type="file"
+            placeholder="image.jpg"
+            {...register('image', { required: 'Image file is required' })}
+            className="mt-1 block w-full p-3 border-2 border-black rounded-md  shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          />
+          {errors.image && (
+            <p className="text-red-500 text-sm">{errors.image.message}</p>
+          )}
+        </div>
 
 
         {/* Submit Button */}
