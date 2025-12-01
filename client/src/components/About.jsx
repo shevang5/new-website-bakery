@@ -13,8 +13,8 @@ const About = () => {
                   About Us
                 </h2>
                 <p className="text-base-content/80 text-xl max-w-3xl mx-auto">
-                  Bake & Coffee is Hawthorne’s newest spot for fresh pastries, iced coffees, and smoothies. 
-                  Located in Crenshaw Village Plaza, we proudly serve the community daily with handmade flavors, 
+                  Bake & Coffee is Hawthorne’s newest spot for fresh pastries, iced coffees, and smoothies.
+                  Located in Crenshaw Village Plaza, we proudly serve the community daily with handmade flavors,
                   warm service, and a cozy experience for everyone.
                 </p>
                 {/* <a href="#" class="btn btn-primary btn-lg btn-gradient">
@@ -25,7 +25,7 @@ const About = () => {
               {/* <!-- Video player and stats --> */}
               <div class="lg:h-161 relative mb-8 h-full w-full rounded-xl max-lg:space-y-6 sm:mb-16 lg:mb-24">
                 <img
-                  src="https://scontent.cdninstagram.com/v/t51.82787-15/573431018_18529297666038154_2356732695764263227_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=Mzc2MDIwNTg1NjUxNzUzODE3OA%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEzNjR4OTA4LnNkci5DMyJ9&_nc_ohc=G69di9oRyVkQ7kNvwEp16WT&_nc_oc=AdnPnI0U1nPvkMIWvkk6meK0Xdx2HTTO0YPOG_-na2yYhPLX26dTITGXhQgjWc3dfqnggXIRKmbejcj6XsqZJY9X&_nc_ad=z-m&_nc_cid=1012&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=GiNU-trcnqvnHD1pbN2JJQ&oh=00_AfiBsRfhNvNeBZQpG0ewEHdo46CfdZO9mFGOptNhWV4nvA&oe=691C2C1A"
+                  src="https://scontent.cdninstagram.com/v/t51.82787-15/584969844_18533519173038154_1112919958244075799_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=107&ig_cache_key=Mzc3MTA3MDk5MjE1Mjk4NDQ0Ng%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE5MjB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=lY8ohGh4_vEQ7kNvwGLCnod&_nc_oc=AdkdE8hjXXALIkTG1QH8GVn36dpcespD1WQwoAxfQibHjQEQmtuaLAiqdMMJ1GlodBMjH373endzSiQ22esb0Hss&_nc_ad=z-m&_nc_cid=1012&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=9bz99XOW1ZmFEzpxhA9n8A&oh=00_AfhEWusw5cYPVVUf5H_XtEY_JlAf-77feO_GtEZ45JS5oQ&oe=692C5128"
                   alt="about-us"
                   class="h-full  w-full rounded-xl object-cover object-top"
                 />
@@ -251,82 +251,82 @@ const About = () => {
           </div>
 
           <>
-                <style>{`
+            <style>{`
                   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
                   * { font-family: 'Poppins', sans-serif; }
                 `}</style>
 
-                <h1 className="text-3xl font-semibold text-center py-10"></h1>
-                <p className="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">
-                  A visual collection of our fresh creations — baked with passion, served with warmth.
-                </p>
+            <h1 className="text-3xl font-semibold text-center py-10"></h1>
+            <p className="text-sm text-slate-500 text-center mt-2 max-w-lg mx-auto">
+              A visual collection of our fresh creations — baked with passion, served with warmth.
+            </p>
 
-                {/* Feature grid */}
-                <div className="relative max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-8 md:px-0 pt-16">
-                  <div className="size-[520px] -top-80 left-1/2 -translate-x-1/2 rounded-full absolute blur-[300px] -z-10 bg-amber-100"></div>
+            {/* Feature grid */}
+            <div className="relative max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 px-8 md:px-0 pt-16">
+              <div className="size-[520px] -top-80 left-1/2 -translate-x-1/2 rounded-full absolute blur-[300px] -z-10 bg-amber-100"></div>
 
-                  {/* 6 Items kept same but reworded slightly */}
-                  <div>
-                    <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
-                      <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="" />
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <h3 className="text-base font-medium text-slate-600">Fast Service</h3>
-                      <p className="text-sm text-slate-500">Fresh pastries ready when you are.</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
-                      <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/colorsEmoji.png" alt="" />
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <h3 className="text-base font-medium text-slate-600">Warm & Cozy Ambience</h3>
-                      <p className="text-sm text-slate-500">A relaxing place to enjoy your drink.</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
-                      <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/puzzelEmoji.png" alt="" />
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <h3 className="text-base font-medium text-slate-600">Easy Pickup</h3>
-                      <p className="text-sm text-slate-500">Grab your order quickly and conveniently.</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
-                      <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/bookEmoji.png" alt="" />
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <h3 className="text-base font-medium text-slate-600">Freshly Made</h3>
-                      <p className="text-sm text-slate-500">Quality ingredients, crafted daily.</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
-                      <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/boxEmoji.png" alt="" />
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <h3 className="text-base font-medium text-slate-600">Customizable Drinks</h3>
-                      <p className="text-sm text-slate-500">Iced, hot, sweetened your way.</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
-                      <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/brainEmoji.png" alt="" />
-                    </div>
-                    <div className="mt-5 space-y-2">
-                      <h3 className="text-base font-medium text-slate-600">Friendly Staff</h3>
-                      <p className="text-sm text-slate-500">We love serving our community.</p>
-                    </div>
-                  </div>
+              {/* 6 Items kept same but reworded slightly */}
+              <div>
+                <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
+                  <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="" />
                 </div>
-              </>
+                <div className="mt-5 space-y-2">
+                  <h3 className="text-base font-medium text-slate-600">Fast Service</h3>
+                  <p className="text-sm text-slate-500">Fresh pastries ready when you are.</p>
+                </div>
+              </div>
+
+              <div>
+                <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
+                  <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/colorsEmoji.png" alt="" />
+                </div>
+                <div className="mt-5 space-y-2">
+                  <h3 className="text-base font-medium text-slate-600">Warm & Cozy Ambience</h3>
+                  <p className="text-sm text-slate-500">A relaxing place to enjoy your drink.</p>
+                </div>
+              </div>
+
+              <div>
+                <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
+                  <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/puzzelEmoji.png" alt="" />
+                </div>
+                <div className="mt-5 space-y-2">
+                  <h3 className="text-base font-medium text-slate-600">Easy Pickup</h3>
+                  <p className="text-sm text-slate-500">Grab your order quickly and conveniently.</p>
+                </div>
+              </div>
+
+              <div>
+                <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
+                  <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/bookEmoji.png" alt="" />
+                </div>
+                <div className="mt-5 space-y-2">
+                  <h3 className="text-base font-medium text-slate-600">Freshly Made</h3>
+                  <p className="text-sm text-slate-500">Quality ingredients, crafted daily.</p>
+                </div>
+              </div>
+
+              <div>
+                <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
+                  <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/boxEmoji.png" alt="" />
+                </div>
+                <div className="mt-5 space-y-2">
+                  <h3 className="text-base font-medium text-slate-600">Customizable Drinks</h3>
+                  <p className="text-sm text-slate-500">Iced, hot, sweetened your way.</p>
+                </div>
+              </div>
+
+              <div>
+                <div className="size-10 p-2 bg-amber-50 border border-amber-200 rounded">
+                  <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/brainEmoji.png" alt="" />
+                </div>
+                <div className="mt-5 space-y-2">
+                  <h3 className="text-base font-medium text-slate-600">Friendly Staff</h3>
+                  <p className="text-sm text-slate-500">We love serving our community.</p>
+                </div>
+              </div>
+            </div>
+          </>
         </div>
       </section>
     </div>

@@ -8,6 +8,13 @@ export default function MyOrders() {
 
   useEffect(() => {
     dispatch(asyncGetUserOrders());
+
+    // Poll for updates every 5 seconds
+    const interval = setInterval(() => {
+      dispatch(asyncGetUserOrders());
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [dispatch]);
 
   if (loading)
