@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loadCart } from "../store/reducers/cartSlice";
 import { Link } from "react-router-dom";
 import axios from "../api/config"; // Axios instance with baseURL
 
 const Products = () => {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const Products = () => {
                     return;
                   }
 
-                  await axios.post(
+                  const res = await axios.post(
                     "http://localhost:5000/api/cart",
                     { productId: product._id },
                     {
@@ -73,6 +76,8 @@ const Products = () => {
                       },
                     }
                   );
+
+                  dispatch(loadCart(res.data));
 
                   alert("✅ Added to Cart");
                 } catch (err) {

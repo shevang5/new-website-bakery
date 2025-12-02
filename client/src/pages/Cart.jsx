@@ -15,6 +15,10 @@ const Cart = () => {
 
   useEffect(() => {
     fetchCart();
+    const savedPhone = localStorage.getItem("pickupPhone");
+    if (savedPhone) {
+      setPickupInfo((prev) => ({ ...prev, phone: savedPhone }));
+    }
   }, []);
 
   const fetchCart = async () => {
@@ -36,10 +40,10 @@ const Cart = () => {
       // call the update endpoint — it returns the updated cart, so use it
       const { data } = await axios.put(`/cart/item/${id}`, { type }); // returns updated cart
 
-  // update local state using returned cart (avoid an extra GET request)
-  setCart(data);
-  // also update redux so Navbar updates immediately
-  dispatch(loadCart(data));
+      // update local state using returned cart (avoid an extra GET request)
+      setCart(data);
+      // also update redux so Navbar updates immediately
+      dispatch(loadCart(data));
     } catch (err) {
       console.log(err);
     } finally {
@@ -97,16 +101,9 @@ const Cart = () => {
 
       await axios.post("/orders", orderData);
       setCart({ items: [] }); // immediate UI clear
-      fetchCart(); // re-sync with server
-      alert("✅ Order Placed Successfully!");
-
-      // reset delivery UI
-      setDeliveryType(null);
-      setAddress({ line1: "", city: "", state: "", postalCode: "", phone: "" });
-      setPickupInfo({ phone: "", pickTime: "" });
     } catch (err) {
-      console.log(err.response?.data || err.message);
-      alert("❌ Failed to place order");
+      console.error("Checkout error:", err);
+      alert("Failed to place order. Please try again.");
     }
   };
 
@@ -149,31 +146,31 @@ const Cart = () => {
               <p className="text-gray-600">${item.product.price}</p>
             </div>
 
-            <div className="md:flex gap-3 flex md:flex-row flex-col"> 
+            <div className="md:flex gap-3 flex md:flex-row flex-col">
               <div className="flex items-center space-x-2">
-              <button
-                onClick={() => updateQty(item._id, "dec")}
-                className={`px-3 py-1 rounded ${updatingIds[item._id] ? 'bg-gray-300 cursor-wait' : 'bg-gray-200 hover:bg-gray-300'}`}
-                disabled={!!updatingIds[item._id]}
-              >
-                {updatingIds[item._id] ? '...' : '-'}
-              </button>
-              <span>{item.quantity}</span>
-              <button
-                onClick={() => updateQty(item._id, "inc")}
-                className={`px-3 py-1 rounded ${updatingIds[item._id] ? 'bg-gray-300 cursor-wait' : 'bg-gray-200 hover:bg-gray-300'}`}
-                disabled={!!updatingIds[item._id]}
-              >
-                {updatingIds[item._id] ? '...' : '+'}
-              </button>
-            </div>
+                <button
+                  onClick={() => updateQty(item._id, "dec")}
+                  className={`px-3 py-1 rounded ${updatingIds[item._id] ? 'bg-gray-300 cursor-wait' : 'bg-gray-200 hover:bg-gray-300'}`}
+                  disabled={!!updatingIds[item._id]}
+                >
+                  {updatingIds[item._id] ? '...' : '-'}
+                </button>
+                <span>{item.quantity}</span>
+                <button
+                  onClick={() => updateQty(item._id, "inc")}
+                  className={`px-3 py-1 rounded ${updatingIds[item._id] ? 'bg-gray-300 cursor-wait' : 'bg-gray-200 hover:bg-gray-300'}`}
+                  disabled={!!updatingIds[item._id]}
+                >
+                  {updatingIds[item._id] ? '...' : '+'}
+                </button>
+              </div>
 
-            <button
-              onClick={() => removeItem(item.product._id)}
-              className="text-red-500 hover:underline"
-            >
-              Remove
-            </button>
+              <button
+                onClick={() => removeItem(item.product._id)}
+                className="text-red-500 hover:underline"
+              >
+                Remove
+              </button>
             </div>
           </div>
         )
@@ -273,7 +270,11 @@ const Cart = () => {
                   <input
                     required
                     value={pickupInfo.phone}
-                    onChange={(e) => setPickupInfo((s) => ({ ...s, phone: e.target.value }))}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setPickupInfo((s) => ({ ...s, phone: val }));
+                      localStorage.setItem("pickupPhone", val);
+                    }}
                     className="mt-1 w-full border px-3 py-2 rounded"
                     placeholder="Your phone number"
                   />
@@ -300,6 +301,6 @@ const Cart = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Cart;

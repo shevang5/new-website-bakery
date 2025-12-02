@@ -47,11 +47,9 @@ export default function MyOrders() {
     }
   };
 
-  // Sort orders so that pending ones appear first
+  // Sort orders so that newest ones appear first
   const sortedOrders = [...orders].sort((a, b) => {
-    if (a.status === "pending" && b.status !== "pending") return -1;
-    if (a.status !== "pending" && b.status === "pending") return 1;
-    return 0;
+    return new Date(b.createdAt) - new Date(a.createdAt);
   });
 
   return (
