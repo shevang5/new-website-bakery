@@ -19,6 +19,15 @@ const Cart = () => {
     if (savedPhone) {
       setPickupInfo((prev) => ({ ...prev, phone: savedPhone }));
     }
+
+    const savedAddress = localStorage.getItem("deliveryAddress");
+    if (savedAddress) {
+      try {
+        setAddress(JSON.parse(savedAddress));
+      } catch (e) {
+        console.error("Failed to parse saved address", e);
+      }
+    }
   }, []);
 
   const fetchCart = async () => {
@@ -30,6 +39,14 @@ const Cart = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const updateAddress = (field, value) => {
+    setAddress((prev) => {
+      const newAddress = { ...prev, [field]: value };
+      localStorage.setItem("deliveryAddress", JSON.stringify(newAddress));
+      return newAddress;
+    });
   };
 
   const updateQty = async (id, type) => {
@@ -215,7 +232,7 @@ const Cart = () => {
                   <input
                     required
                     value={address.line1}
-                    onChange={(e) => setAddress((s) => ({ ...s, line1: e.target.value }))}
+                    onChange={(e) => updateAddress("line1", e.target.value)}
                     className="mt-1 w-full border px-3 py-2 rounded"
                     placeholder="123 Baker St"
                   />
@@ -224,20 +241,20 @@ const Cart = () => {
                   <input
                     required
                     value={address.city}
-                    onChange={(e) => setAddress((s) => ({ ...s, city: e.target.value }))}
+                    onChange={(e) => updateAddress("city", e.target.value)}
                     className="mt-1 w-full border px-3 py-2 rounded"
                     placeholder="City"
                   />
                   <input
                     value={address.state}
-                    onChange={(e) => setAddress((s) => ({ ...s, state: e.target.value }))}
+                    onChange={(e) => updateAddress("state", e.target.value)}
                     className="mt-1 w-full border px-3 py-2 rounded"
                     placeholder="State"
                   />
                   <input
                     required
                     value={address.postalCode}
-                    onChange={(e) => setAddress((s) => ({ ...s, postalCode: e.target.value }))}
+                    onChange={(e) => updateAddress("postalCode", e.target.value)}
                     className="mt-1 w-full border px-3 py-2 rounded"
                     placeholder="Postal Code"
                   />
@@ -246,7 +263,7 @@ const Cart = () => {
                   <label className="block text-sm font-medium text-gray-700">Phone</label>
                   <input
                     value={address.phone}
-                    onChange={(e) => setAddress((s) => ({ ...s, phone: e.target.value }))}
+                    onChange={(e) => updateAddress("phone", e.target.value)}
                     className="mt-1 w-full border px-3 py-2 rounded"
                     placeholder="Optional phone number"
                   />

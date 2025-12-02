@@ -72,7 +72,7 @@ export default function AdminOrders() {
       {orders.map((order) => (
         <div
           key={order._id}
-          className={"relative p-4 mb-6 rounded shadow-md border " + (order.status === "pending" ? "bg-yellow-100 border-yellow-400" : "bg-white")}
+          className={"relative p-4 mb-6 rounded shadow-md border " + (order.status === "pending" ? (order.deliveryType === "home" ? "bg-orange-100 border-orange-400" : "bg-yellow-100 border-yellow-400") : "bg-white")}
         >
           {/* created time small light text in corner */}
           {order.createdAt && (
