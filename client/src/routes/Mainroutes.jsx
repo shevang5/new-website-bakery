@@ -15,6 +15,7 @@ const OrdersPage = lazy(() => import('../pages/OrdersPage'))
 const UpdateProduct = lazy(() => import('../pages/admin/updateProduct'))
 const Cart = lazy(() => import('../pages/Cart'))
 const AdminOrders = lazy(() => import('../pages/admin/AdminOrders'))
+const CreateManualOrder = lazy(() => import('../pages/admin/CreateManualOrder'))
 
 const Mainroutes = () => {
   return (
@@ -24,12 +25,13 @@ const Mainroutes = () => {
         <Route path='/products' element={<Products />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
-  <Route path="/login" element={<Login />} />
-  <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/myorders" element={<OrdersPage />} />
         <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="/admin/create-order" element={<CreateManualOrder />} />
 
         <Route path="/admin/create-product" element={<CreateProduct />} />
         <Route path="/admin/update-product/:id" element={<UpdateProduct />} />

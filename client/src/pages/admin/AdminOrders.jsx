@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "../../api/config";
 
-const statusOptions = ["pending", "processing", "shipped", "cancelled", "delivered"];
+const statusOptions = ["pending", "shipped", "cancelled", "delivered"];
 
 const statusStyles = {
   pending: { active: "bg-yellow-500 text-white ring-2 ring-yellow-300", inactive: "bg-yellow-50 text-yellow-700 border border-yellow-200 hover:bg-yellow-100" },
@@ -67,7 +68,15 @@ export default function AdminOrders() {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Admin Orders</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-center">AdminOrders</h1>
+        <Link
+          to="/admin/create-order"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+        >
+          + Create Manual Order
+        </Link>
+      </div>
 
       {orders.map((order) => (
         <div
@@ -81,7 +90,7 @@ export default function AdminOrders() {
           <div className="flex justify-between items-center mb-4">
             <p>
               <span className="font-semibold">User:</span>{" "}
-              {order.user?.name || order.user?._id}
+              {order.user?.name || order.customerDetails?.name || "Unknown User"}
             </p>
             <p>
               <span className="font-semibold">Total:</span> $

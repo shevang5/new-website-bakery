@@ -4,7 +4,7 @@ import Cart from "../models/Cart.js";
 
 export const createOrder = async (req, res) => {
   try {
-    const { products, total, deliveryType, address, pickup } = req.body;
+    const { products, total, deliveryType, address, pickup, customerDetails } = req.body;
 
     // Validate products
     if (!products || !products.length) {
@@ -27,11 +27,25 @@ export const createOrder = async (req, res) => {
 
     // Create order (include delivery fields if provided)
     const orderPayload = {
-      user: req.user._id,
       products, // [{ product: productId, quantity }]
       total,
       deliveryType: deliveryType || "pickup",
     };
+
+    // If user is authenticated, link the order to the user
+    // If customerDetails is provided, it's a manual order (even if req.user exists, e.g. admin)
+    if (customerDetails) {
+      if (!customerDetails.name || !customerDetails.phone) {
+        return res.status(400).json({ message: "Customer name and phone are required for manual orders" });
+      }
+      orderPayload.customerDetails = customerDetails;
+      // Do NOT set orderPayload.user here, so it remains null/undefined
+    } else if (req.user) {
+      // Standard user order
+      orderPayload.user = req.user._id;
+    } else {
+      return res.status(400).json({ message: "User or Customer Details required" });
+    }
 
     if (deliveryType === "home") {
       orderPayload.address = address;
@@ -47,12 +61,14 @@ export const createOrder = async (req, res) => {
     // Populate product details
     await order.populate("products.product");
 
-    // Clear user's cart after successful order creation
-    try {
-      await Cart.findOneAndUpdate({ user: req.user._id }, { items: [] });
-    } catch (err) {
-      console.error("Failed to clear cart after order:", err);
-      // Non-fatal: we still return the created order
+    // Clear user's cart after successful order creation (only if user exists)
+    if (req.user) {
+      try {
+        await Cart.findOneAndUpdate({ user: req.user._id }, { items: [] });
+      } catch (err) {
+        console.error("Failed to clear cart after order:", err);
+        // Non-fatal: we still return the created order
+      }
     }
 
     res.status(201).json(order);
