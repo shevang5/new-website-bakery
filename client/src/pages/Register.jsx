@@ -7,15 +7,15 @@ import { asyncRegisterUser } from '../store/action/userActions';
 import { useDispatch } from 'react-redux';
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
-    const dispatch = useDispatch()
-    const Navigate = useNavigate()
+  const dispatch = useDispatch()
+  const Navigate = useNavigate()
   const onSubmit = (user) => {
     user.id = nanoid()
     user.isAdmin = false
     console.log(user);
     dispatch(asyncRegisterUser(user))
     Navigate('/login')
-    
+
   }
 
   return (
@@ -42,12 +42,12 @@ const Register = () => {
         </div>
         <div className="flex items-center justify-between">
           <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
-          
+
         </div>
         <div className="mt-4">
           <Link to="/login" className="text-blue-500 hover:text-blue-700">Already have an account? Login</Link>
         </div>
-        
+
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -60,7 +60,7 @@ const Register = () => {
 
           <div className="mt-6">
             <a
-              href="http://localhost:5000/auth/google"
+              href={`${import.meta.env.VITE_SERVER_URL}/auth/google`}
               className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">

@@ -11,7 +11,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get("/products");
         console.log(res);
 
         setProducts(res.data);
@@ -68,7 +68,7 @@ const Products = () => {
                   }
 
                   const res = await axios.post(
-                    "http://localhost:5000/api/cart",
+                    "/cart",
                     { productId: product._id },
                     {
                       headers: {

@@ -53,7 +53,7 @@ const LoginPage = () => {
         <div className="flex items-center justify-between mb-2">
           <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Login</button>
         </div>
-        
+
         <div className="mt-6 mb-4">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -66,7 +66,7 @@ const LoginPage = () => {
 
           <div className="mt-4">
             <a
-              href="http://localhost:5000/auth/google"
+              href={`${import.meta.env.VITE_SERVER_URL}/auth/google`}
               className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -84,9 +84,9 @@ const LoginPage = () => {
           <Link to="/register" className="text-blue-500 hover:text-blue-700 text-sm">
             Don't have an account? Register
           </Link>
-          <button 
-            type="button" 
-            className="text-sm text-blue-600 hover:underline" 
+          <button
+            type="button"
+            className="text-sm text-blue-600 hover:underline"
             onClick={() => setShowForgot(true)}
           >
             Forgot Password?

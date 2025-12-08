@@ -1,15 +1,9 @@
-// import axios from '../../api/config'
-import { loadUser, removeUser} from '../reducers/userSlice';
-
-// Register
-import axios from "axios";
-// import { loadUser } from "./userActions"; // adjust import
-
-const API_URL = "http://localhost:5000/api/auth"; // change to your deployed backend URL
+import { loadUser, removeUser } from '../reducers/userSlice';
+import axios from "../../api/config";
 
 export const asyncRegisterUser = (user) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${API_URL}/register`, user);
+    const { data } = await axios.post(`/auth/register`, user);
     localStorage.setItem("user", JSON.stringify(data));
     dispatch(loadUser(data));
     console.log("✅ User registered:", data);
@@ -20,7 +14,7 @@ export const asyncRegisterUser = (user) => async (dispatch) => {
 
 export const asyncLoginUsers = (user) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${API_URL}/login`, user);
+    const { data } = await axios.post(`/auth/login`, user);
     localStorage.setItem("user", JSON.stringify(data));
     dispatch(loadUser(data));
     console.log("✅ User logged in:", data);

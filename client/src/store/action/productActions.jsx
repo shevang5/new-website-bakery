@@ -57,8 +57,7 @@ export const asyncCreateProduct = (product) => async (dispatch) => {
 
 
 
-// import axios from "axios";
-// import { asyncLoadProducts } from "./productActions";
+
 
 export const asyncUpdateProduct = (id, formData) => async (dispatch, getState) => {
   try {
@@ -73,7 +72,7 @@ export const asyncUpdateProduct = (id, formData) => async (dispatch, getState) =
     };
 
     const res = await axios.put(
-      `http://localhost:5000/api/products/${id}`,
+      `/products/${id}`,
       formData,
       config
     );
@@ -99,7 +98,7 @@ export const asyncRemoveProduct = (id) => async (dispatch) => {
     const token = storedUser?.token;
 
     const response = await axios.delete(
-      `http://localhost:5000/api/products/${id}`,
+      `/products/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
