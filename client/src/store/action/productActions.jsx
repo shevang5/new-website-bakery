@@ -3,15 +3,15 @@ import { loadProduct } from "../reducers/productSlice";
 
 
 
-export const asyncLoadProducts = () => async(dispatch, getState)=>{
-    try {
-        
-         const {data} = await axios.get("/products")
-         dispatch(loadProduct(data))
-    } catch (error) {
-        console.log(error);
-        
-    }
+export const asyncLoadProducts = () => async (dispatch, getState) => {
+  try {
+
+    const { data } = await axios.get("/products")
+    dispatch(loadProduct(data))
+  } catch (error) {
+    console.log(error);
+
+  }
 }
 
 
@@ -80,8 +80,10 @@ export const asyncUpdateProduct = (id, formData) => async (dispatch, getState) =
 
     console.log("✅ Updated product:", res.data);
     dispatch(asyncLoadProducts());
+    return res.data; // Return data for component handling
   } catch (error) {
     console.error("❌ Error updating product:", error.response?.data || error.message);
+    throw error; // Re-throw error for component handling
   }
 };
 

@@ -1,5 +1,6 @@
 import Product from "../models/Product.js";
-import supabase from "../utils/supabase.js";
+import cloudinary from "../utils/cloudinary.js";
+import streamifier from "streamifier";
 
 export const getProducts = async (req, res) => {
   try {
@@ -27,22 +28,25 @@ export const addProduct = async (req, res) => {
 
     if (!file) return res.status(400).json({ message: "Image file required" });
 
-    // Upload image to Supabase
-    const fileName = `${Date.now()}_${file.originalname}`;
-    const { data, error } = await supabase.storage
-      .from("bakery-item-images")
-      .upload(fileName, file.buffer, {
-        contentType: file.mimetype,
+    // Upload image to Cloudinary
+    const streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          { folder: "bakery_1_images" },
+          (error, result) => {
+            if (result) {
+              resolve(result);
+            } else {
+              reject(error);
+            }
+          }
+        );
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
       });
+    };
 
-    if (error) throw error;
-
-    // Get public URL
-    const { data: publicURLData } = supabase.storage
-      .from("bakery-item-images")
-      .getPublicUrl(fileName);
-
-    const imageFile = publicURLData.publicUrl;
+    const result = await streamUpload(req);
+    const imageFile = result.secure_url;
 
     // Create product document
     const product = new Product({
@@ -70,20 +74,24 @@ export const updateProduct = async (req, res) => {
     let imageFile = product.image;
 
     if (req.file) {
-      const fileName = `${Date.now()}_${req.file.originalname}`;
-      const { data, error } = await supabase.storage
-        .from("bakery-item-images")
-        .upload(fileName, req.file.buffer, {
-          contentType: req.file.mimetype,
+      const streamUpload = (req) => {
+        return new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            { folder: "bakery_1_images" },
+            (error, result) => {
+              if (result) {
+                resolve(result);
+              } else {
+                reject(error);
+              }
+            }
+          );
+          streamifier.createReadStream(req.file.buffer).pipe(stream);
         });
+      };
 
-      if (error) throw error;
-
-      const { data: publicURLData } = supabase.storage
-        .from("bakery-item-images")
-        .getPublicUrl(fileName);
-
-      imageFile = publicURLData.publicUrl;
+      const result = await streamUpload(req);
+      imageFile = result.secure_url;
     }
 
     // Update fields

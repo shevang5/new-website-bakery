@@ -45,7 +45,7 @@ const ProductDetail = () => {
   };
 
   // Update product
-  const handleEditProduct = (data) => {
+  const handleEditProduct = async (data) => {
     if (!product) return;
 
     const formData = new FormData();
@@ -58,7 +58,13 @@ const ProductDetail = () => {
       formData.append("image", data.image[0]); // Only add new image if selected
     }
 
-    dispatch(asyncUpdateProduct(product._id, formData));
+    try {
+      await dispatch(asyncUpdateProduct(product._id, formData));
+      alert("✅ Product updated successfully!");
+      setShowEditForm(false); // Optional: close form on success
+    } catch (error) {
+      alert("❌ Failed to update product");
+    }
   };
 
   return (
