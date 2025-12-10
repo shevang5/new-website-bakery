@@ -19,28 +19,35 @@ const app = express();
 // 'http://127.0.0.1:5173',
 const allowedOrigins = [
   "https://new-website-bakery.vercel.app",
+  "https://new-website-bakery-git-main-shevang5s-projects.vercel.app", // Potential preview URL
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
   process.env.CLIENT_URL
 ].filter(Boolean);
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
+// Middleware to log origin for debugging
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin) {
+    console.log(`[CORS DEBUG] Request Origin: ${origin}`);
+    if (allowedOrigins.includes(origin)) {
+      console.log(`[CORS DEBUG] Origin Allowed`);
     } else {
-      console.log('Blocked by CORS:', origin); // Log blocked origins directly to server console
-      callback(new Error('Not allowed by CORS'));
+      console.log(`[CORS DEBUG] Origin NOT in allowed list`);
     }
-  },
+  }
+  next();
+});
+
+const corsOptions = {
+  origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
 };
 
 app.use(cors(corsOptions));
-// app.options('*', cors(corsOptions)); // Removed to fix Express 5 path error
+
 
 
 
