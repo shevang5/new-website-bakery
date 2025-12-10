@@ -27,17 +27,24 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+import MongoStore from 'connect-mongo';
+
 // Session middleware
 app.use(session({
   secret: process.env.SESSION_SECRET || 'MRBI9Us9n6fo6gBQxHVXInPKZGqQckZH',
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI, // Ensure this env var is set on Render
+    collectionName: 'sessions',      // Optional: defaults to 'sessions'
+    ttl: 24 * 60 * 60                // Optional: 1 day in seconds
+  }),
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Needed for cross-site cookies if frontend/backend are on different domains
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    maxAge: 24 * 60 * 60 * 1000
   },
-  proxy: true // trust the reverse proxy when setting secure cookies (important for Render)
+  proxy: true
 }));
 
 // Initialize passport and session
