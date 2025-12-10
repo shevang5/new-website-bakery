@@ -1,7 +1,7 @@
 // src/api/config.js
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+const baseURL = import.meta.env.VITE_SERVER_URL || "https://new-website-bakery-nc1.onrender.com/api";
 
 // Create axios instance with default config
 const config = axios.create({

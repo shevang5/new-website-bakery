@@ -53,6 +53,7 @@ app.use(session({
 }));
 
 // Initialize passport and session
+app.set("trust proxy", 1);
 app.use(passport.initialize());
 app.use(passport.session());
 
