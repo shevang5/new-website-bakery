@@ -19,7 +19,6 @@ const app = express();
 // 'http://127.0.0.1:5173',
 const allowedOrigins = [
   "https://new-website-bakery.vercel.app",
-  "https://new-website-bakery-git-main-shevang5s-projects.vercel.app", // Potential preview URL
   "http://localhost:5173",
   "http://127.0.0.1:5173",
   process.env.CLIENT_URL
