@@ -64,8 +64,6 @@ export default function AdminOrders() {
 
   if (loading) return <p className="text-center py-10 text-gray-500">Loading orders...</p>;
 
-  if (!orders.length) return <p className="text-center py-16 text-gray-500">No orders yet.</p>;
-
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
@@ -78,100 +76,107 @@ export default function AdminOrders() {
         </Link>
       </div>
 
-      {orders.map((order) => (
-        <div
-          key={order._id}
-          className={"relative p-4 mb-6 rounded shadow-md border " + (order.status === "pending" ? (order.deliveryType === "home" ? "bg-orange-100 border-orange-400" : "bg-yellow-100 border-yellow-400") : "bg-white")}
-        >
-          {/* created time small light text in corner */}
-          {order.createdAt && (
-            <p className="absolute bottom-0 left-4 text-xs text-gray-400">{new Date(order.createdAt).toLocaleString()}</p>
-          )}
-          <div className="flex justify-between items-center mb-4">
-            <p>
-              <span className="font-semibold">User:</span>{" "}
-              {order.user?.name || order.customerDetails?.name || "Unknown User"}
-            </p>
-            <p>
-              <span className="font-semibold">Total:</span> $
-              {order.total?.toFixed(2)}
-            </p>
-          </div>
+      {!orders.length ? (
+        <p className="text-center py-16 text-gray-500">No orders yet.</p>
+      ) : (
 
-          {/* Delivery info */}
-          <div className="mb-3">
-            <p>
-              <span className="font-semibold">Delivery:</span>{" "}
-              {order.deliveryType === "home" ? (
-                <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded">Home Delivery</span>
-              ) : (
-                <span className="inline-flex items-center">
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Pickup</span>
-                  {order.pickup?.pickTime && (
-                    <>
-                      <span className="ml-3 text-sm text-gray-800 bg-white px-2 py-1 rounded font-medium">{new Date(order.pickup.pickTime).toLocaleString()}</span>
-                      <span className="ml-3 text-sm text-gray-800 bg-white px-2 py-1 rounded font-medium">Phone: {order.pickup.phone}</span>
-                    </>
-                  )}
-                </span>
-              )}
-            </p>
 
-            {order.deliveryType === "home" && order.address && (
-              <div className="mt-2 text-sm text-gray-700 bg-gray-50 p-3 rounded">
-                <div>{order.address.line1}</div>
-                <div>
-                  {order.address.city}
-                  {order.address.state ? ", " + order.address.state : ""} {order.address.postalCode}
-                </div>
-                {order.address.phone && <div>Phone: {order.address.phone}</div>}
-              </div>
+        orders.map((order) => (
+          <div
+            key={order._id}
+            className={"relative p-4 mb-6 rounded shadow-md border " + (order.status === "pending" ? (order.deliveryType === "home" ? "bg-orange-100 border-orange-400" : "bg-yellow-100 border-yellow-400") : "bg-white")}
+          >
+            {/* created time small light text in corner */}
+            {order.createdAt && (
+              <p className="absolute bottom-0 left-4 text-xs text-gray-400">{new Date(order.createdAt).toLocaleString()}</p>
             )}
-          </div>
+            <div className="flex justify-between items-center mb-4">
+              <p>
+                <span className="font-semibold">User:</span>{" "}
+                {order.user?.name || order.customerDetails?.name || "Unknown User"}
+              </p>
+              <p>
+                <span className="font-semibold">Total:</span> $
+                {order.total?.toFixed(2)}
+              </p>
+            </div>
 
-          <div className="space-y-3 mb-4">
-            {order.products?.map((item) => (
-              <div
-                key={item._id}
-                className="flex items-center justify-between bg-gray-50 p-3 rounded"
-              >
-                <div className="flex items-center">
-                  <img
-                    src={item.product?.image}
-                    alt={item.product?.name}
-                    className="w-20 h-20 object-cover rounded mr-4"
-                  />
+            {/* Delivery info */}
+            <div className="mb-3">
+              <p>
+                <span className="font-semibold">Delivery:</span>{" "}
+                {order.deliveryType === "home" ? (
+                  <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded">Home Delivery</span>
+                ) : (
+                  <span className="inline-flex items-center">
+                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Pickup</span>
+                    {order.pickup?.pickTime && (
+                      <>
+                        <span className="ml-3 text-sm text-gray-800 bg-white px-2 py-1 rounded font-medium">{new Date(order.pickup.pickTime).toLocaleString()}</span>
+                        <span className="ml-3 text-sm text-gray-800 bg-white px-2 py-1 rounded font-medium">Phone: {order.pickup.phone}</span>
+                      </>
+                    )}
+                  </span>
+                )}
+              </p>
+
+              {order.deliveryType === "home" && order.address && (
+                <div className="mt-2 text-sm text-gray-700 bg-gray-50 p-3 rounded">
+                  <div>{order.address.line1}</div>
                   <div>
-                    <p className="font-semibold">{item.product?.name}</p>
-                    <p className="text-gray-600">Qty: {item.quantity}</p>
-                    <p className="text-gray-600">
-                      Price: ${item.product?.price?.toFixed(2)}
-                    </p>
+                    {order.address.city}
+                    {order.address.state ? ", " + order.address.state : ""} {order.address.postalCode}
+                  </div>
+                  {order.address.phone && <div>Phone: {order.address.phone}</div>}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-3 mb-4">
+              {order.products?.map((item) => (
+                <div
+                  key={item._id}
+                  className="flex items-center justify-between bg-gray-50 p-3 rounded"
+                >
+                  <div className="flex items-center">
+                    <img
+                      src={item.product?.image}
+                      alt={item.product?.name}
+                      className="w-20 h-20 object-cover rounded mr-4"
+                    />
+                    <div>
+                      <p className="font-semibold">{item.product?.name}</p>
+                      <p className="text-gray-600">Qty: {item.quantity}</p>
+                      <p className="text-gray-600">
+                        Price: ${item.product?.price?.toFixed(2)}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-4 gap-3">
-            <p className="text-xs text-gray-400">Order ID: {order._id}</p>
-            <div className="flex flex-wrap gap-2">
-              {statusOptions.map((status) => (
-                <button
-                  key={status}
-                  onClick={() => handleStatusChange(order._id, status)}
-                  className={`px-3 py-1 rounded text-xs font-bold uppercase tracking-wide transition-all ${order.status === status
-                    ? statusStyles[status].active
-                    : statusStyles[status].inactive
-                    }`}
-                >
-                  {status}
-                </button>
               ))}
             </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-4 gap-3">
+              <p className="text-xs text-gray-400">Order ID: {order._id}</p>
+              <div className="flex flex-wrap gap-2">
+                {statusOptions.map((status) => (
+                  <button
+                    key={status}
+                    onClick={() => handleStatusChange(order._id, status)}
+                    className={`px-3 py-1 rounded text-xs font-bold uppercase tracking-wide transition-all ${order.status === status
+                      ? statusStyles[status].active
+                      : statusStyles[status].inactive
+                      }`}
+                  >
+                    {status}
+                  </button>
+                ))}
+              </div>
+            </div>
+
           </div>
-        </div>
-      ))}
+        ))
+      )}
 
     </div>
   );

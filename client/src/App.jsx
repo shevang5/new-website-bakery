@@ -14,23 +14,23 @@ const Mainroutes = lazy(() => import('./routes/Mainroutes'))
 const App = () => {
   const dispatch = useDispatch();
 
-  const {user} = useSelector((state) => state.usersReducer)
-  const {products} = useSelector((state) => state.productsReducers)
-  const {orders} = useSelector((state) => state.orders)
+  const { user } = useSelector((state) => state.usersReducer)
+  const { products } = useSelector((state) => state.productsReducers)
+  const { orders } = useSelector((state) => state.orders)
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(asyncLoadProducts())
-  },[dispatch])
+  }, [dispatch])
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(asyncCurrentUsers())
-  },[dispatch])
-  
+  }, [dispatch])
+
   return (
     <div>
       <Suspense fallback={<Loader />}>
-        <Navbar/>
-        <Mainroutes/>
+        <Navbar />
+        <Mainroutes />
       </Suspense>
     </div>
   )
