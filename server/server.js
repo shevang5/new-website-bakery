@@ -17,8 +17,9 @@ const app = express();
 // Configure CORS with proper origin and credentials
 const corsOptions = {
   origin: [
-    // 'http://localhost:5173',
-    // 'http://127.0.0.1:5173',
+    "https://new-website-bakery.vercel.app",
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
     process.env.CLIENT_URL // Add environment variable for deployment
   ].filter(Boolean), // Remove undefined/null if CLIENT_URL is not set
   credentials: true,
