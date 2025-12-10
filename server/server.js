@@ -15,18 +15,22 @@ dotenv.config();
 const app = express();
 
 // Configure CORS with proper origin and credentials
+// 'http://localhost:5173',
+// 'http://127.0.0.1:5173',
+const allowedOrigins = [
+  "https://new-website-bakery.vercel.app",
+  process.env.CLIENT_URL
+].filter(Boolean);
+
 const corsOptions = {
-  origin: [
-    "https://new-website-bakery.vercel.app",
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    process.env.CLIENT_URL // Add environment variable for deployment
-  ].filter(Boolean), // Remove undefined/null if CLIENT_URL is not set
+  origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
+
 app.use(cors(corsOptions));
+
 
 import MongoStore from 'connect-mongo';
 
