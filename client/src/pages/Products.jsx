@@ -94,7 +94,7 @@ const Products = () => {
 
       {/* Controls Section */}
       <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div className="max-w-7xl z-40 mx-auto px-4 py-4 flex flex-col md:flex-row gap-4 items-center justify-between">
           {/* Search */}
           <div className="relative w-full md:w-96 group">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-red-500 transition-colors" />
@@ -113,9 +113,9 @@ const Products = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-1 rounded-full text-sm font-medium transition-all whitespace-nowrap border ${selectedCategory === cat
-                  ? "bg-red-600 text-white border-red-600 shadow-lg shadow-pink-200 scale-105"
-                  : "bg-white text-gray-600 border-gray-200 hover:border-pink-300 hover:text-red-600 hover:bg-pink-50"
+                className={`px-4 py-1 z-50 rounded-full text-sm font-medium transition-all whitespace-nowrap border ${selectedCategory === cat
+                  ? "bg-red-600 z-50 text-white border-red-600 shadow-lg shadow-pink-200 scale-105"
+                  : "bg-white z-50 text-gray-600 border-gray-200 hover:border-pink-300 hover:text-red-600 hover:bg-pink-50"
                   }`}
               >
                 {cat}
@@ -126,11 +126,11 @@ const Products = () => {
       </div>
 
       {/* Product Grid */}
-      <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+      <div className="max-w-7xl z-50 mx-auto px-4 py-8 md:py-12">
         {loading ? (
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-8">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="animate-pulse flex flex-col h-full bg-white rounded-2xl border border-gray-100 p-3">
+              <div key={i} className="animate-pulse -z-10 flex flex-col h-full bg-white rounded-2xl border border-gray-100 p-3">
                 <div className="bg-gray-200 h-48 rounded-xl mb-4 w-full"></div>
                 <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
                 <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>

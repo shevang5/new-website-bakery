@@ -175,7 +175,7 @@ export default function AdminOrders() {
             <p className="text-gray-500">Try adjusting your search or filters</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4"> {/* Reduced gap from 6 to 4 */}
             {filteredOrders.map((order) => {
               const StatusIcon = STATUS_CONFIG[order.status]?.icon || Clock;
               const isPending = order.status === "pending";
@@ -183,113 +183,116 @@ export default function AdminOrders() {
               return (
                 <div
                   key={order._id}
-                  className={`bg-white rounded-2xl border transition-all duration-300 hover:shadow-md ${isPending ? "border-amber-200 shadow-amber-100/50 ring-1 ring-amber-100" : "border-gray-100 shadow-sm"
+                  className={`bg-white rounded-xl border transition-all duration-300 hover:shadow-md ${isPending
+                    ? "border-red-600 border-2 shadow-red-100/50 ring-1 ring-red-100"
+                    : "border-gray-100 shadow-sm"
                     }`}
                 >
                   {/* Order Header */}
-                  <div className="p-4 md:p-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gray-50/30 rounded-t-2xl">
-                    <div className="flex items-center gap-4">
-                      <div className={`p-3 rounded-xl ${STATUS_CONFIG[order.status]?.bg || "bg-gray-100"}`}>
-                        <StatusIcon className={`w-6 h-6 ${STATUS_CONFIG[order.status]?.color || "text-gray-600"}`} />
+                  <div className="p-3 border-b border-gray-100 flex flex-row md:flex-row md:items-center justify-between gap-2 bg-gray-50/30 rounded-t-xl"> {/* Reduced padding and gap */}
+                    <div className="flex items-center gap-2"> {/* Reduced gap */}
+                      <div className={`p-1.5 rounded-lg ${STATUS_CONFIG[order.status]?.bg || "bg-gray-100"}`}> {/* Reduced padding and rounded size */}
+                        <StatusIcon className={`w-4 h-4 ${STATUS_CONFIG[order.status]?.color || "text-gray-600"}`} /> {/* Reduced icon size */}
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="font-bold text-gray-900 text-lg">
+                          <h3 className="font-bold text-gray-900 text-sm"> {/* Reduced text size */}
                             #{order._id.slice(-6).toUpperCase()}
                           </h3>
-                          <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide border ${STATUS_CONFIG[order.status]?.bg + " " +
+                          <span className={`px-1.5 py-0 rounded-md text-[9px] font-bold uppercase tracking-wider border ${STATUS_CONFIG[order.status]?.bg + " " + // Reduced padding and font size
                             STATUS_CONFIG[order.status]?.color + " " +
                             STATUS_CONFIG[order.status]?.border
                             }`}>
                             {STATUS_CONFIG[order.status]?.label}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-500 flex items-center gap-1 mt-1">
-                          <Clock className="w-3.5 h-3.5" />
+                        <p className="text-[10px] text-gray-500 flex items-center gap-1 mt-0.5"> {/* Reduced text size */}
+                          <Clock className="w-2.5 h-2.5" /> {/* Reduced icon size */}
                           {new Date(order.createdAt).toLocaleString()}
                         </p>
                       </div>
                     </div>
 
                     <div className="text-right">
-                      <p className="text-sm text-gray-500 mb-1">Total</p>
-                      <p className="text-2xl font-bold text-gray-900">${order.total?.toFixed(2)}</p>
+                      <p className="text-xs text-gray-500 mb-0">Total</p> {/* Removed margin-bottom */}
+                      <p className="text-base font-bold text-gray-900">${order.total?.toFixed(2)}</p> {/* Reduced text size */}
                     </div>
                   </div>
 
-                  <div className="p-4 md:p-6 grid grid-cols-1 gap-6">
+                  {/* Main Content Area */}
+                  <div className="p-3 flex flex-wrap gap-3"> {/* Reduced padding and gap */}
                     {/* Customer Info */}
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-                        <User className="w-4 h-4" /> Customer Details
+                    <div className="space-y-1 flex-1 min-w-[45%]"> {/* Reduced space-y */}
+                      <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1"> {/* Reduced gap */}
+                        <User className="w-3 h-3" /> Customer {/* Reduced icon size */}
                       </h4>
-                      <div className="bg-gray-50 p-4 rounded-xl space-y-2 text-sm">
-                        <p className="font-medium text-gray-900 text-base">
+                      <div className="bg-gray-50 p-2 rounded-lg space-y-1 text-sm h-full"> {/* Reduced padding */}
+                        <p className="font-bold text-gray-900 text-base leading-snug"> {/* Reduced text size and line height */}
                           {order.user?.name || order.customerDetails?.name || "Guest User"}
                         </p>
                         {order.customerDetails?.phone && (
-                          <p className="text-gray-600 flex items-center gap-2">
-                            <Phone className="w-3.5 h-3.5" /> {order.customerDetails.phone}
+                          <p className="text-gray-600 flex items-center gap-1 text-xs"> {/* Reduced gap */}
+                            <Phone className="w-3 h-3" /> {order.customerDetails.phone}
                           </p>
                         )}
-                        <div className="inline-flex items-center gap-2 px-2 py-1 bg-white rounded-md border border-gray-200 text-xs font-medium text-gray-600 mt-2">
-                          {order.deliveryType === "home" ? "🏠 Home Delivery" : "🏪 Store Pickup"}
+                        <div className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-gray-200 text-[10px] font-bold text-gray-700 mt-1"> {/* Reduced padding and font size */}
+                          {order.deliveryType === "home" ? "🏠 Delivery" : "🏪 Pickup"}
                         </div>
                       </div>
                     </div>
 
                     {/* Delivery/Pickup Info */}
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-                        <MapPin className="w-4 h-4" /> {order.deliveryType === "home" ? "Delivery Address" : "Pickup Details"}
+                    <div className="space-y-1 flex-1 min-w-[45%]"> {/* Reduced space-y */}
+                      <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1"> {/* Reduced gap */}
+                        <MapPin className="w-3 h-3" /> {order.deliveryType === "home" ? "Address" : "Pickup"} {/* Reduced icon size */}
                       </h4>
-                      <div className="bg-gray-50 p-4 rounded-xl space-y-2 text-sm h-full">
+                      <div className="bg-gray-50 p-2 rounded-lg space-y-1 text-sm h-full"> {/* Reduced padding */}
                         {order.deliveryType === "home" && order.address ? (
                           <>
-                            <p className="text-gray-900">{order.address.line1}</p>
-                            <p className="text-gray-600">
-                              {order.address.city}, {order.address.state} {order.address.postalCode}
+                            <p className="text-gray-900 text-sm font-medium leading-tight">{order.address.line1}</p>
+                            <p className="text-[11px] text-gray-600 leading-tight"> {/* Reduced text size */}
+                              {order.address.city}, {order.address.state}
                             </p>
                             {order.address.phone && (
-                              <p className="text-gray-500 flex items-center gap-2 pt-2 border-t border-gray-200 mt-2">
-                                <Phone className="w-3.5 h-3.5" /> {order.address.phone}
+                              <p className="text-gray-500 flex items-center gap-1 pt-1 border-t border-gray-200 mt-1 text-xs"> {/* Reduced gap and text size */}
+                                <Phone className="w-3 h-3" /> {order.address.phone}
                               </p>
                             )}
                           </>
                         ) : order.pickup ? (
                           <>
-                            <p className="text-gray-900 font-medium flex items-center gap-2">
-                              <Calendar className="w-4 h-4 text-gray-500" />
+                            <p className="text-gray-900 font-medium flex items-center gap-1.5 text-sm">
+                              <Calendar className="w-3 h-3 text-gray-500" /> {/* Reduced icon size */}
                               {order.pickup.pickTime ? new Date(order.pickup.pickTime).toLocaleString() : "No time set"}
                             </p>
                             {order.pickup.phone && (
-                              <p className="text-gray-600 flex items-center gap-2">
-                                <Phone className="w-3.5 h-3.5" /> {order.pickup.phone}
+                              <p className="text-gray-600 flex items-center gap-1 text-xs"> {/* Reduced gap and text size */}
+                                <Phone className="w-3 h-3" /> {order.pickup.phone}
                               </p>
                             )}
                           </>
-                        ) : <span className="text-gray-400 italic">No details provided</span>}
+                        ) : <span className="text-gray-400 italic text-xs">No details</span>}
                       </div>
                     </div>
 
-                    {/* Order Items */}
-                    <div className="space-y-4">
-                      <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-                        <Box className="w-4 h-4" /> Order Items
+                    {/* Order Items - Full Width */}
+                    <div className="space-y-1 w-full"> {/* Reduced space-y */}
+                      <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1"> {/* Reduced gap */}
+                        <Box className="w-3 h-3" /> Items {/* Reduced icon size */}
                       </h4>
-                      <div className="bg-gray-50 p-3 rounded-xl space-y-3 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                      <div className="bg-gray-50 p-1.5 rounded-lg flex flex-wrap gap-1.5"> {/* Reduced padding and gap */}
                         {order.products?.map((item) => (
-                          <div key={item._id} className="flex items-center gap-3 bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                          <div key={item._id} className="flex items-center gap-1.5 bg-white p-1 rounded border border-gray-100 shadow-sm min-w-[120px] flex-1"> {/* Reduced padding and gap, min-width */}
                             <img
                               src={item.product?.image}
                               alt={item.product?.name}
-                              className="w-12 h-12 object-cover rounded-md bg-gray-100"
+                              className="w-7 h-7 object-cover rounded bg-gray-100" // Reduced image size
                             />
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-gray-900 truncate">{item.product?.name}</p>
-                              <p className="text-xs text-gray-500">Qty: {item.quantity} × ${item.product?.price?.toFixed(2)}</p>
+                              <p className="text-xs font-medium text-gray-900 truncate">{item.product?.name}</p> {/* Reduced text size */}
+                              <p className="text-[9px] text-gray-500">Qty: {item.quantity}</p> {/* Reduced text size */}
                             </div>
-                            <p className="text-sm font-semibold text-gray-900">
+                            <p className="text-xs font-semibold text-gray-900">
                               ${(item.quantity * item.product?.price).toFixed(2)}
                             </p>
                           </div>
@@ -299,15 +302,15 @@ export default function AdminOrders() {
                   </div>
 
                   {/* Actions Footer */}
-                  <div className="px-4 py-3 md:px-6 bg-gray-50 border-t border-gray-100 rounded-b-2xl flex flex-wrap gap-2 items-center justify-between">
+                  <div className="px-3 py-2 bg-gray-50 border-t border-gray-100 rounded-b-xl flex flex-wrap gap-2 items-center justify-between"> {/* Reduced padding and rounded size */}
                     <span className="text-xs font-semibold text-gray-500 uppercase">Update Status:</span>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5"> {/* Reduced gap */}
                       {Object.keys(STATUS_CONFIG).map(status => (
                         <button
                           key={status}
                           onClick={() => handleStatusChange(order._id, status)}
                           disabled={order.status === status}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-sm flex items-center gap-1.5 ${order.status === status
+                          className={`px-2 py-1 rounded-md text-[11px] font-semibold transition-all shadow-sm flex items-center gap-1 ${order.status === status // Reduced padding, rounded size, font size, and gap
                             ? "bg-gray-800 text-white cursor-default ring-0"
                             : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 hover:border-gray-300"
                             }`}
