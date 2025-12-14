@@ -27,7 +27,7 @@ const App = () => {
   }, [dispatch])
 
   return (
-    <div>
+    <div className="lg:pb-0 pb-20">
       <Suspense fallback={<Loader />}>
         <Navbar />
         <Mainroutes />

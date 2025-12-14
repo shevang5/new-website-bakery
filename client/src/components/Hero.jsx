@@ -1,42 +1,94 @@
-import React from 'react'
+import React from 'react';
+import { ShoppingBag, ArrowRight, Star } from 'lucide-react';
 
 const Hero = () => {
-  return (
-    <div>
-      <section id="home">
-          <div className="gap-18  md:pt-45 lg:gap-35 lg:pt-47.5 flex h-full flex-col justify-between bg-[url('/src/components/ui/assets/img/free-layer-blur.png')] bg-cover bg-center bg-no-repeat py-8 pt-28 sm:py-16 md:gap-24 lg:py-24">
-            <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-6 justify-self-center px-4 text-center sm:px-6 lg:px-8">
-              <div className="bg-base-200 border-base-content/20 w-fit rounded-full border px-3 py-1">
-                <span>☕ Now Open in Hawthorne! ❤️</span>
-              </div>
-              <h1 className="text-base-content z-1 relative text-5xl font-bold leading-[1.15] max-md:text-2xl md:max-w-4xl">
-                  Fresh Pastries. Bold Coffee.
-                <span>
-                  Every Day at Bake & Coffee.
-                  <br />
-                </span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="348" height="10" viewBox="0 0 348 10" fill="none" class="-z-1 left-80 absolute -bottom-1.5 max-lg:left-4 max-md:hidden">
-  <path d="M1.85645 8.23715C62.4821 3.49284 119.04 1.88864 180.031 1.88864C225.103 1.88864 275.146 1.32978 319.673 4.85546C328.6 5.24983 336.734 6.33887 346.695 7.60269" stroke="url(#paint0_linear_17052_181397)" stroke-width="2" stroke-linecap="round" />
-  <defs>
-    <linearGradient id="paint0_linear_17052_181397" x1="29.7873" y1="1.85626" x2="45.2975" y2="69.7387" gradientUnits="userSpaceOnUse">
-      <stop stopColor="red" /> 
-      <stop offset="1" stopColor="red" /> 
-    </linearGradient>
-  </defs>
-</svg>
-              </h1>
-              <p className="text-base-content/80 max-w-3xl">Bake & Coffee has arrived at Crenshaw Village Plaza — serving fresh bagels, croissants, iced coffees, and smoothies every day. Stop by and taste the warmth of Hawthorne’s newest café!</p>
-              <a href="#" className="btn bg-gradient-to-r px-3 py-2 rounded-md from-red-500 to-red-300 hover:from-red-600 hover:to-red-700 text-white border-0 btn-lg">
-                Experience the Flavor
-                <span className="icon-[tabler--arrow-right] size-5 rtl:rotate-180"></span>
-              </a>
-            </div>
-            <img src="../src/assets/dishes-hero.png" alt="Dishes" className="w-full h-auto object-cover" />
-            {/* <img src="" alt=""  /> */}
-          </div>
-        </section>
-    </div>
-  )
-}
+    const images = [
+        "https://images.unsplash.com/photo-1638347244745-ed524cbef3b7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "/images/bgImg.jpg",
+        "https://images.unsplash.com/photo-1553909489-cd47e0907980?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    ];
 
-export default Hero
+    const [activeImage, setActiveImage] = React.useState(images[0]);
+
+    return (
+        <div className="relative w-full h-[calc(100vh-80px)] overflow-hidden bg-red-500">
+            {/* Background Image Container */}
+            <div className="md:px-12 px-2 py-6 absolute inset-0 z-0">
+                <img
+                    // Using the absolute path as requested, but in React normally you import or use /public
+                    // Since it is in public/images folder, we can reference it directly as /images/bgImg.jpg
+                    src={activeImage}
+                    alt="Bakery Background"
+                    className="w-full rounded-2xl h-full object-cover object-center transition-opacity duration-500 ease-in-out"
+                />
+                {/* Overlay gradient for text readability if needed, though the design looks clean */}
+                {/* <div className="absolute inset-0 bg-black/10"></div> */}
+            </div>
+
+            <div className="relative  z-10 container mx-auto px-6 h-full flex flex-col md:justify-center justify-end py-10">
+                {/* Left Content */}
+                <div className="max-w-xl backdrop-blur-md flex flex-col md:items-start justify-center items-center  md:p-9 p-2 rounded-4xl shadow-2xl mt-20 text-white drop-shadow-md">
+                    <h1 className="text-2xl  md:text-6xl font-bold leading-tight mb-4 ">
+                        Fresh Pastries. <br className='md:block hidden' />
+                        Bold Coffee <br />
+                        Every Day at Bake & Coffee.
+                    </h1>
+                    <p className="text-lg drop-shadow-2xl mb-8 opacity-90 max-w-md font-light">
+                        Bake & Coffee has arrived at Crenshaw Village Plaza — serving fresh bagels, croissants, iced coffees, and smoothies every day. Stop by and taste the warmth of Hawthorne’s newest café!
+                    </p>
+
+                    <div className="flex flex-wrap gap-4 items-center">
+                        <button className="bg-white text-gray-800 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition-transform hover:scale-105 active:scale-95 shadow-lg">
+                            Explore Menu
+                        </button>
+                        {/* <button className="flex items-center gap-2 text-white font-medium hover:underline opacity-90 hover:opacity-100 transition-opacity">
+                            Explore Menu <ArrowRight className="w-4 h-4" />
+                        </button> */}
+                    </div>
+                </div>
+            </div>
+
+            {/* Floating Product Card (Right Side) */}
+            <div className="absolute top-1/2 right-10 md:right-32 transform -translate-y-1/3 z-20 hidden md:block">
+                {/* Breads Floating Effect - Simulated with layout or images in the design. 
+             Since I don't have separate bread images, I will focus on the Card itself.
+             The user image provided is a single BG image, so the breads might be part of it? 
+             Checking the file name 'bgImg.jpg', it likely contains the breads. 
+             So I just need to place the White Card overlay. */}
+
+                <div className="bg-white p-6 rounded-2xl shadow-xl w-80 animate-in fade-in slide-in-from-bottom-10 duration-1000">
+                    <div className="flex gap-1 mb-2">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <Star key={star} className="w-4 h-4 text-red-500 fill-current" />
+                        ))}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2 leading-tight">
+                        sandwiches
+                    </h3>
+                    <div className="flex items-center justify-between mt-4">
+                        <span className="text-gray-900 font-bold text-lg">$8.95</span>
+                        <button className="flex items-center gap-2 border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium hover:border-gray-400 transition-colors">
+                            <ShoppingBag className="w-4 h-4" />
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                {/* Small thumbnails below card - mimicking the design */}
+                <div className="flex gap-3 mt-4 justify-end">
+                    {images.map((img, index) => (
+                        <div
+                            key={index}
+                            onClick={() => setActiveImage(img)}
+                            className={`w-20 h-14 bg-white/50 backdrop-blur-sm rounded-lg border-2 ${activeImage === img ? 'border-orange-500' : 'border-transparent'} overflow-hidden shadow-lg transform hover:scale-105 transition-transform cursor-pointer`}
+                        >
+                            <img src={img} className="w-full h-full object-cover" alt={`thumb-${index}`} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Hero;

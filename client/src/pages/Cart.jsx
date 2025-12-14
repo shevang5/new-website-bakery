@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "../api/config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loadCart } from "../store/reducers/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [cart, setCart] = useState(null);
   const [updatingIds, setUpdatingIds] = useState({});
   // delivery state: 'pickup' or 'home' (null = not chosen yet)
@@ -118,6 +119,7 @@ const Cart = () => {
 
       await axios.post("/orders", orderData);
       setCart({ items: [] }); // immediate UI clear
+      navigate("/myorders"); // Navigate to My Orders page
     } catch (err) {
       console.error("Checkout error:", err);
       alert("Failed to place order. Please try again.");
@@ -309,7 +311,7 @@ const Cart = () => {
                 </div>
 
                 <div className="text-right">
-                  <button type="submit" className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold">Place Pickup Order</button>
+                  <button  type="submit" className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold">Place Pickup Order</button>
                 </div>
               </form>
             )}
