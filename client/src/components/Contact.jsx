@@ -23,57 +23,60 @@ const Contact = () => {
   };
 
   return (
-    <div className="py-12 px-4 lg:py-60">
-      <form onSubmit={handleSubmit} className="flex flex-col items-center text-sm">
-        <p className="text-lg text-blue-600 font-medium pb-2">Contact Us</p>
-        <h1 className="text-4xl font-semibold text-slate-700 pb-4">Get in touch with us</h1>
-        <p className="text-sm text-gray-500 text-center pb-10">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br />
-          Lorem Ipsum has been the industry's standard dummy text.
+    <div className="py-16 px-4 lg:py-32 bg-white">
+      <form onSubmit={handleSubmit} className="flex flex-col items-center text-sm max-w-4xl mx-auto">
+        <p className="text-lg text-[#E94E2F] font-semibold tracking-wide uppercase pb-2">Contact Us</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-slate-800 pb-4 text-center">Let's BAKE the world a better place</h1>
+        <p className="text-base text-gray-500 text-center pb-12 max-w-2xl">
+          Have a question about our menu, need a custom cake for a special occasion, or just want to say hello?
+          Fill out the form below and we'll get back to you as soon as possible.
         </p>
-        
-        <div className="flex flex-col md:flex-row items-center gap-8 w-[350px] md:w-[700px]">
+
+        <div className="flex flex-col md:flex-row items-center gap-6 w-full md:w-[700px]">
           <div className="w-full">
-            <label htmlFor="name" className="text-black/70">Your Name</label>
+            <label htmlFor="name" className="text-slate-700 font-medium ml-1">Your Name</label>
             <input
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
+              placeholder="John Doe"
+              className="h-12 p-4 mt-2 w-full border border-gray-200 rounded-lg outline-none focus:border-[#E94E2F] focus:ring-1 focus:ring-[#E94E2F] transition-all bg-gray-50"
               type="text"
               required
             />
           </div>
           <div className="w-full">
-            <label htmlFor="email" className="text-black/70">Your Email</label>
+            <label htmlFor="email" className="text-slate-700 font-medium ml-1">Your Email</label>
             <input
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
+              placeholder="john@example.com"
+              className="h-12 p-4 mt-2 w-full border border-gray-200 rounded-lg outline-none focus:border-[#E94E2F] focus:ring-1 focus:ring-[#E94E2F] transition-all bg-gray-50"
               type="email"
               required
             />
           </div>
         </div>
 
-        <div className="mt-6 w-[350px] md:w-[700px]">
-          <label htmlFor="message" className="text-black/70">Message</label>
+        <div className="mt-6 w-full md:w-[700px]">
+          <label htmlFor="message" className="text-slate-700 font-medium ml-1">Message</label>
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full mt-2 p-2 h-40 border border-gray-500/30 rounded resize-none outline-none focus:border-indigo-300"
+            placeholder="Tell us about your sweet cravings..."
+            className="w-full mt-2 p-4 h-48 border border-gray-200 rounded-lg resize-none outline-none focus:border-[#E94E2F] focus:ring-1 focus:ring-[#E94E2F] transition-all bg-gray-50"
             required
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="mt-5 bg-indigo-600 hover:bg-indigo-700 text-white h-12 w-56 px-4 rounded active:scale-95 transition"
+          className="mt-8 bg-[#E94E2F] hover:bg-[#d03d1e] text-white font-semibold h-12 w-56 rounded-lg active:scale-95 transition-all shadow-md hover:shadow-lg"
         >
           Send Message
         </button>

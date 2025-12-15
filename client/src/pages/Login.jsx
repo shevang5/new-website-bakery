@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { asyncLoginUsers } from '../store/action/userActions'
 import { nanoid } from 'nanoid'
 // Use a more inviting, high-quality, bakery-specific image
-import bakeryHero from '../assets/bakery-hero.jpg'
+import bakeryHero from '/images/bgImg.jpg'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -23,45 +23,37 @@ const Login = () => {
   // --- UI Improvements in this section ---
 
   return (
-    // Use a softer background color like a light cream/beige instead of stark white/gray
-    <div className="flex min-h-screen w-full bg-amber-50">
+    <div className="flex min-h-screen w-full bg-orange-50/30">
 
       {/* Left Text/Image Side (Bakery Vibe) */}
-      <div className="hidden lg:flex w-1/2 relative bg-amber-900 items-center justify-center p-12">
-        {/* Use a better background image setup with a subtle overlay */}
+      <div className="hidden lg:flex w-1/2 relative bg-[#E94E2F] items-center justify-center p-12">
         <div className="absolute inset-0">
-          {/* Ensure the image is highly relevant (e.g., fresh bread, pastries) */}
           <img
             src={bakeryHero}
             alt="Delicious assortment of fresh bakery goods"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover mix-blend-overlay opacity-40"
           />
-          {/* Subtle dark overlay for better text contrast */}
-          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#E94E2F]/90 to-black/40"></div>
         </div>
 
         <div className="relative z-10 px-12 text-center text-white">
-          {/* Use a friendly, artisanal font for the logo/title (simulated with font-serif/cursive if using standard Tailwind) */}
-          <h1 className="text-6xl font-extrabold mb-6 tracking-wide font-serif">
+          <h1 className="text-6xl font-extrabold mb-6 tracking-wide font-serif drop-shadow-md">
             LA Bakery 🥐
           </h1>
-          <p className="text-xl text-amber-100 italic">
+          <p className="text-2xl font-light italic text-orange-50">
             "The smell of fresh baking is the smell of home."
           </p>
-          <p className="mt-4 text-lg text-gray-200">
+          <p className="mt-8 text-lg text-orange-100 max-w-lg mx-auto">
             Welcome back! Please login to your account to continue ordering our delightful pastries, artisan breads, and coffee.
           </p>
-
         </div>
       </div>
 
       {/* Right Form Side */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16">
-        {/* Use softer shadow and rounded corners. Keep the form background white for focus. */}
-        <div className="w-full max-w-sm space-y-10 bg-white p-10 rounded-2xl shadow-2xl">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-16">
+        <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-3xl shadow-xl border border-orange-100">
           <div className="text-center">
-            {/* Use the brand color for the main title */}
-            <h2 className="text-4xl font-bold text-amber-800">
+            <h2 className="text-4xl font-bold text-gray-900">
               Sign In
             </h2>
             <p className="mt-3 text-base text-gray-500">
@@ -74,41 +66,44 @@ const Login = () => {
 
               {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 ml-1">
                   Email Address
                 </label>
                 <div className="mt-1">
                   <input
                     id="email"
                     type="email"
-                    autoComplete="email" // Good for UX
+                    autoComplete="email"
                     required
                     {...register('email')}
-                    // Improved focus ring color (to amber) and slightly thicker border
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-3 focus:ring-amber-400 focus:border-amber-400 transition-all duration-200 text-base"
-                    placeholder="you@example.com" // Better placeholder example
+                    className="w-full px-5 py-4 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E94E2F] focus:border-transparent transition-all duration-200 bg-gray-50 text-base"
+                    placeholder="you@example.com"
                   />
-                  {errors.email && <p className="mt-1 text-sm text-red-600">Email is required</p>}
+                  {errors.email && <p className="mt-1 text-sm text-[#E94E2F]">Email is required</p>}
                 </div>
               </div>
 
               {/* Password Field */}
               <div>
-                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
-                  Password
-                </label>
+                <div className="flex items-center justify-between ml-1 mb-1">
+                  <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
+                    Password
+                  </label>
+                  <a href="#" className="text-sm font-medium text-[#E94E2F] hover:text-[#d03d1e] hover:underline">
+                    Forgot password?
+                  </a>
+                </div>
                 <div className="mt-1">
                   <input
                     id="password"
                     type="password"
-                    autoComplete="current-password" // Good for UX
+                    autoComplete="current-password"
                     required
                     {...register('password')}
-                    // Same improved styling as email
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-3 focus:ring-amber-400 focus:border-amber-400 transition-all duration-200 text-base"
+                    className="w-full px-5 py-4 border border-gray-200 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E94E2F] focus:border-transparent transition-all duration-200 bg-gray-50 text-base"
                     placeholder="********"
                   />
-                  {errors.password && <p className="mt-1 text-sm text-red-600">Password is required</p>}
+                  {errors.password && <p className="mt-1 text-sm text-[#E94E2F]">Password is required</p>}
                 </div>
               </div>
             </div>
@@ -117,33 +112,22 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                // Larger button with stronger amber color and more pronounced hover
-                className="w-full flex justify-center py-3 px-4 rounded-xl text-lg font-bold text-white bg-amber-700 hover:bg-amber-800 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-amber-500/50 transition-colors duration-200 shadow-md hover:shadow-lg"
+                className="w-full flex justify-center py-4 px-4 rounded-xl text-lg font-bold text-white bg-[#E94E2F] hover:bg-[#d03d1e] focus:outline-none focus:ring-4 focus:ring-orange-500/20 transition-all duration-200 shadow-lg hover:shadow-xl active:scale-[0.98]"
               >
                 Login to LA Bakery
               </button>
             </div>
 
-            <div className="flex justify-between items-center text-sm">
-              {/* Add a Forgot Password link for better UX */}
-              <a href="#" className="font-medium text-gray-500 hover:text-amber-600 hover:underline">
-                Forgot password?
-              </a>
-
-              <span className="text-gray-600">Don't have an account?</span>
-            </div>
-
             {/* Sign Up Link */}
-            <div className="text-center">
+            <div className="text-center mt-6">
+              <span className="text-gray-600">Don't have an account? </span>
               <Link
                 to="/register"
-                // Make the register link more prominent or put it on its own line
-                className="font-bold text-lg text-amber-600 hover:text-amber-500 transition duration-200"
+                className="font-bold text-[#E94E2F] hover:text-[#d03d1e] transition duration-200 hover:underline"
               >
                 Create an account
               </Link>
             </div>
-
           </form>
         </div>
       </div>

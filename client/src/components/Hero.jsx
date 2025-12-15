@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingBag, ArrowRight, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
     const images = [
@@ -9,6 +10,7 @@ const Hero = () => {
     ];
 
     const [activeImage, setActiveImage] = React.useState(images[0]);
+    const navigate = useNavigate();
 
     return (
         <div className="relative w-full h-[calc(100vh-80px)] overflow-hidden bg-red-500">
@@ -25,28 +27,29 @@ const Hero = () => {
                 {/* <div className="absolute inset-0 bg-black/10"></div> */}
             </div>
 
-            <div className="relative  z-10 container mx-auto px-6 h-full flex flex-col md:justify-center justify-end py-10">
-                {/* Left Content */}
-                <div className="max-w-xl backdrop-blur-md flex flex-col md:items-start justify-center items-center  md:p-9 p-2 rounded-4xl shadow-2xl mt-20 text-white drop-shadow-md">
-                    <h1 className="text-2xl  md:text-6xl font-bold leading-tight mb-4 ">
-                        Fresh Pastries. <br className='md:block hidden' />
+            <div className="z-10 w-full px-6 h-full flex flex-col md:justify-center items-start justify-end py-10">
+                <div className="max-w-xl md:mx-20 backdrop-blur-md flex flex-col items-start justify-center mb-10 md:p-9 p-4 rounded-4xl shadow-2xl mt-20 text-white drop-shadow-md text-left">
+
+                    <h1 className="text-2xl md:text-6xl font-bold leading-tight mb-4">
+                        Fresh Pastries. <br className="md:block hidden" />
                         Bold Coffee <br />
                         Every Day at Bake & Coffee.
                     </h1>
-                    <p className="text-lg drop-shadow-2xl mb-8 opacity-90 max-w-md font-light">
-                        Bake & Coffee has arrived at Crenshaw Village Plaza — serving fresh bagels, croissants, iced coffees, and smoothies every day. Stop by and taste the warmth of Hawthorne’s newest café!
+
+                    <p className="text-lg mb-8 opacity-90 max-w-md font-light">
+                        Bake & Coffee has arrived at Crenshaw Village Plaza — serving fresh bagels,
+                        croissants, iced coffees, and smoothies every day.
                     </p>
 
-                    <div className="flex flex-wrap gap-4 items-center">
-                        <button className="bg-white text-gray-800 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition-transform hover:scale-105 active:scale-95 shadow-lg">
+                    <div className="flex gap-4 items-center">
+                        <button onClick={() => navigate('/products')} className="bg-white text-gray-800 px-6 py-2 rounded-lg font-bold shadow-lg">
                             Explore Menu
                         </button>
-                        {/* <button className="flex items-center gap-2 text-white font-medium hover:underline opacity-90 hover:opacity-100 transition-opacity">
-                            Explore Menu <ArrowRight className="w-4 h-4" />
-                        </button> */}
                     </div>
+
                 </div>
             </div>
+
 
             {/* Floating Product Card (Right Side) */}
             <div className="absolute top-1/2 right-10 md:right-32 transform -translate-y-1/3 z-20 hidden md:block">
@@ -67,7 +70,7 @@ const Hero = () => {
                     </h3>
                     <div className="flex items-center justify-between mt-4">
                         <span className="text-gray-900 font-bold text-lg">$8.95</span>
-                        <button className="flex items-center gap-2 border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium hover:border-gray-400 transition-colors">
+                        <button onClick={() => navigate('/products')} className="flex items-center gap-2 border border-gray-200 px-3 py-2 rounded-lg text-sm font-medium hover:border-gray-400 transition-colors">
                             <ShoppingBag className="w-4 h-4" />
                             Add to Cart
                         </button>

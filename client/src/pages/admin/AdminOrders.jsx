@@ -223,19 +223,22 @@ export default function AdminOrders() {
                   <div className="p-3 flex flex-wrap gap-3"> {/* Reduced padding and gap */}
                     {/* Customer Info */}
                     <div className="space-y-1 flex-1 min-w-[45%]"> {/* Reduced space-y */}
-                      <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1"> {/* Reduced gap */}
+                      <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex  items-center gap-1"> {/* Reduced gap */}
                         <User className="w-3 h-3" /> Customer {/* Reduced icon size */}
                       </h4>
-                      <div className="bg-gray-50 p-2 rounded-lg space-y-1 text-sm h-full"> {/* Reduced padding */}
+                      <div className="bg-gray-100 p-2 md:flex flex justify-between md:justify-between md:items-start rounded-lg space-y-1 text-sm h-[80px]"> {/* Reduced padding */}
                         <p className="font-bold text-gray-900 text-base leading-snug"> {/* Reduced text size and line height */}
                           {order.user?.name || order.customerDetails?.name || "Guest User"}
                         </p>
-                        {order.customerDetails?.phone && (
-                          <p className="text-gray-600 flex items-center gap-1 text-xs"> {/* Reduced gap */}
+                        {/* {order.customerDetails?.phone && (
+                          <p className="text-gray-600 flex items-center gap-1 text-xs"> 
                             <Phone className="w-3 h-3" /> {order.customerDetails.phone}
                           </p>
-                        )}
-                        <div className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-gray-200 text-[10px] font-bold text-gray-700 mt-1"> {/* Reduced padding and font size */}
+                        )} */}
+                        <div className={`inline-flex items-center gap-1 px-2 py-0.5 md:h-full h-[30px] rounded border text-[12px] md:text-[20px] font-bold mt-1 ${order.deliveryType === "home"
+                          ? "bg-amber-100 border-amber-200 text-amber-800"
+                          : "bg-green-100 border-green-200 text-green-800"
+                          }`}>
                           {order.deliveryType === "home" ? "🏠 Delivery" : "🏪 Pickup"}
                         </div>
                       </div>
@@ -246,7 +249,7 @@ export default function AdminOrders() {
                       <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1"> {/* Reduced gap */}
                         <MapPin className="w-3 h-3" /> {order.deliveryType === "home" ? "Address" : "Pickup"} {/* Reduced icon size */}
                       </h4>
-                      <div className="bg-gray-50 p-2 rounded-lg space-y-1 text-sm h-full"> {/* Reduced padding */}
+                      <div className="bg-gray-50 p-2 rounded-lg space-y-1 text-sm h-[80px]"> {/* Reduced padding */}
                         {order.deliveryType === "home" && order.address ? (
                           <>
                             <p className="text-gray-900 text-sm font-medium leading-tight">{order.address.line1}</p>
@@ -254,8 +257,8 @@ export default function AdminOrders() {
                               {order.address.city}, {order.address.state}
                             </p>
                             {order.address.phone && (
-                              <p className="text-gray-500 flex items-center gap-1 pt-1 border-t border-gray-200 mt-1 text-xs"> {/* Reduced gap and text size */}
-                                <Phone className="w-3 h-3" /> {order.address.phone}
+                              <p className="text-gray-500 flex items-center gap-1 pt-1 border-t border-gray-200 mt-1 text-xl"> {/* Reduced gap and text size */}
+                                <Phone className="w-4 h-4" /> {order.address.phone}
                               </p>
                             )}
                           </>
@@ -266,8 +269,8 @@ export default function AdminOrders() {
                               {order.pickup.pickTime ? new Date(order.pickup.pickTime).toLocaleString() : "No time set"}
                             </p>
                             {order.pickup.phone && (
-                              <p className="text-gray-600 flex items-center gap-1 text-xs"> {/* Reduced gap and text size */}
-                                <Phone className="w-3 h-3" /> {order.pickup.phone}
+                              <p className="text-gray-600 flex items-center gap-1 text-xl"> {/* Reduced gap and text size */}
+                                <Phone className="w-4 h-4" /> {order.pickup.phone}
                               </p>
                             )}
                           </>

@@ -10,10 +10,10 @@ const categories = [
     { id: 6, name: 'Turkey Bagel Sandwich', price: '$8.95' },
     { id: 7, name: 'Roasted Beef Bagel Sandwich', price: '$10.95' },
     { id: 8, name: 'Bagel with Cream Cheese', price: '$3.75' },
-    { id: 9, name: 'Bagel and Lox', price: '$9.95' },
-    { id: 10, name: 'Bagel Breakfast w Bacon', price: '$7.45' },
-    { id: 11, name: 'Bagel w Ham', price: '$7.45' },
-    { id: 12, name: 'Bagel w Sausage Links', price: '$7.45' },
+    // { id: 9, name: 'Bagel and Lox', price: '$9.95' },
+    // { id: 10, name: 'Bagel Breakfast w Bacon', price: '$7.45' },
+    // { id: 11, name: 'Bagel w Ham', price: '$7.45' },
+    // { id: 12, name: 'Bagel w Sausage Links', price: '$7.45' },
 ];
 
 const CategorySection = () => {
@@ -35,7 +35,7 @@ const CategorySection = () => {
                 <h2 className="text-4xl font-serif font-medum text-gray-900">Shop By Categories</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 min-h-[600px] border-t border-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 min-h-[600px] border-t border-gray-200">
                 {categories.map((category) => (
                     <div
                         key={category.id}
