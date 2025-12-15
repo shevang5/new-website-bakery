@@ -195,7 +195,7 @@ const ProductCard = ({ product }) => {
           alt={product.name}
           className="w-full h-40 md:h-56 object-cover transform group-hover:scale-110 transition-transform duration-700"
         />
-        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-xs font-bold px-3 py-1 rounded-full text-red-600 shadow-sm uppercase tracking-wider">
+        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm text-[9px] font-bold px-3 py-1 rounded-full text-red-600 shadow-sm uppercase tracking-wider">
           {product.category}
         </div>
 

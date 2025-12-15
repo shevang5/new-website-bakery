@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLogoutUsers } from "../store/action/userActions";
+import { asyncGetAllOrders } from "../store/action/orderActions";
 import { User, ShoppingBag, Menu, X, SquarePlus } from "lucide-react";
 
 const Navbar = () => {
@@ -19,6 +20,21 @@ const Navbar = () => {
   const cart = useSelector((state) => state.cartsReducers.carts);
   const cartCount =
     cart?.items?.reduce((sum, it) => sum + (it.quantity || 0), 0) || 0;
+
+  const { orders } = useSelector((state) => state.orders);
+  const pendingOrderCount = orders ? orders.filter(o => o.status === "pending").length : 0;
+
+  // Poll orders for admin
+  useEffect(() => {
+    let interval;
+    if (user?.role === "admin") {
+      dispatch(asyncGetAllOrders()); // Initial fetch
+      interval = setInterval(() => {
+        dispatch(asyncGetAllOrders());
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [user, dispatch]);
 
   // Outside click for profile
   useEffect(() => {
@@ -84,8 +100,15 @@ const Navbar = () => {
                   isActive ? "text-red-600 font-semibold" : "hover:text-red-600 transition-colors"
                 }>Create</NavLink>
                 <NavLink to="/admin/orders" className={({ isActive }) =>
-                  isActive ? "text-red-600 font-semibold" : "hover:text-red-600 transition-colors"
-                }>Manage</NavLink>
+                  isActive ? "text-red-600 font-semibold relative" : "hover:text-red-600 transition-colors relative"
+                }>
+                  Manage
+                  {pendingOrderCount > 0 && (
+                    <span className="absolute -top-2 -right-3 w-5 h-5 bg-red-600 text-white text-[10px] flex items-center justify-center rounded-full">
+                      {pendingOrderCount}
+                    </span>
+                  )}
+                </NavLink>
               </>
             )}
           </div>
@@ -211,8 +234,13 @@ const Navbar = () => {
                   <NavLink to="/admin/create-product" onClick={() => setMenuOpen(false)} className="hover:text-red-600">
                     Create Product
                   </NavLink>
-                  <NavLink to="/admin/orders" onClick={() => setMenuOpen(false)} className="hover:text-red-600">
+                  <NavLink to="/admin/orders" onClick={() => setMenuOpen(false)} className="hover:text-red-600 flex items-center justify-between">
                     Manage Orders
+                    {pendingOrderCount > 0 && (
+                      <span className="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full">
+                        {pendingOrderCount}
+                      </span>
+                    )}
                   </NavLink>
                 </>
               )}
@@ -272,9 +300,14 @@ const Navbar = () => {
 
           {user?.role === "admin" && (
             <NavLink to="/admin/orders" className={({ isActive }) =>
-              isActive ? "flex flex-col items-center justify-center py-2 px-3 text-red-600 font-semibold text-xs" : "flex flex-col items-center justify-center py-2 px-3 text-gray-600 hover:text-red-600 text-xs"
+              isActive ? "flex flex-col items-center justify-center py-2 px-3 text-red-600 font-semibold text-xs relative" : "flex flex-col items-center justify-center py-2 px-3 text-gray-600 hover:text-red-600 text-xs relative"
             }>
               <img className="h-10" src="/pngImages/manifest.png" alt="" />
+              {pendingOrderCount > 0 && (
+                <span className="absolute top-0 right-2 w-4 h-4 bg-red-600 rounded-full text-white text-[10px] flex items-center justify-center font-bold shadow-sm ring-1 ring-white">
+                  {pendingOrderCount}
+                </span>
+              )}
               manage <br />
               orders
             </NavLink>

@@ -265,7 +265,7 @@ export default function AdminOrders() {
                         ) : order.pickup ? (
                           <>
                             <p className="text-gray-900 font-medium flex items-center gap-1.5 text-sm">
-                              <Calendar className="w-3 h-3 text-gray-500" /> {/* Reduced icon size */}
+                              <Calendar className="w-4 h-4 text-gray-500" /> {/* Reduced icon size */}
                               {order.pickup.pickTime ? new Date(order.pickup.pickTime).toLocaleString() : "No time set"}
                             </p>
                             {order.pickup.phone && (
@@ -283,17 +283,17 @@ export default function AdminOrders() {
                       <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1"> {/* Reduced gap */}
                         <Box className="w-3 h-3" /> Items {/* Reduced icon size */}
                       </h4>
-                      <div className="bg-gray-50 p-1.5 rounded-lg flex flex-wrap gap-1.5"> {/* Reduced padding and gap */}
+                      <div className="bg-gray-50 p-1.5 rounded-lg flex flex-col flex-wrap gap-1.5"> {/* Reduced padding and gap */}
                         {order.products?.map((item) => (
-                          <div key={item._id} className="flex items-center gap-1.5 bg-white p-1 rounded border border-gray-100 shadow-sm min-w-[120px] flex-1"> {/* Reduced padding and gap, min-width */}
+                          <div key={item._id} className="flex  items-center gap-1.5 bg-white p-1 rounded border border-gray-100 shadow-sm min-w-[120px] flex-1"> {/* Reduced padding and gap, min-width */}
                             <img
                               src={item.product?.image}
                               alt={item.product?.name}
-                              className="w-7 h-7 object-cover rounded bg-gray-100" // Reduced image size
+                              className="w-10 h-10 object-cover rounded bg-gray-100" // Reduced image size
                             />
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs font-medium text-gray-900 truncate">{item.product?.name}</p> {/* Reduced text size */}
-                              <p className="text-[9px] text-gray-500">Qty: {item.quantity}</p> {/* Reduced text size */}
+                              <p className="text-[15px] font-medium text-gray-900 truncate">{item.product?.name}</p> {/* Reduced text size */}
+                              <p className="text-[12px] text-gray-500">Qty: {item.quantity}</p> {/* Reduced text size */}
                             </div>
                             <p className="text-xs font-semibold text-gray-900">
                               ${(item.quantity * item.product?.price).toFixed(2)}
