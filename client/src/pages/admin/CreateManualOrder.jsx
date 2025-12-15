@@ -189,7 +189,7 @@ export default function CreateManualOrder() {
                         </div>
 
                         {/* Products Grid */}
-                        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[75vh] overflow-y-auto pr-2 custom-scrollbar pb-10">
+                        <div className="grid bg-white  grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-10">
                             {filteredProducts.map((product) => (
                                 <div
                                     key={product._id}
@@ -230,9 +230,9 @@ export default function CreateManualOrder() {
                         </div>
                     </div>
 
-                    {/* Right Column: Order Form & Summary (Sticky) */}
+                    {/* Right Column: Order Form & Summary */}
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col h-[calc(100vh-6rem)] sticky top-6">
+                        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col">
 
                             <div className="p-6 border-b border-gray-100 bg-gray-50/50 rounded-t-2xl">
                                 <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
@@ -241,7 +241,7 @@ export default function CreateManualOrder() {
                                 </h2>
                             </div>
 
-                            <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+                            <div className="flex-1 p-6 space-y-6">
                                 {/* Customer Info */}
                                 <div className="space-y-4">
                                     <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Customer</h3>
@@ -346,7 +346,7 @@ export default function CreateManualOrder() {
                                             <p className="text-sm text-gray-400">Cart is empty</p>
                                         </div>
                                     ) : (
-                                        <div className="space-y-2 max-h-[200px] overflow-y-auto pr-1 custom-scrollbar">
+                                        <div className="space-y-2 pr-1">
                                             {cart.map((item) => (
                                                 <div key={item.product._id} className="flex items-center gap-3 bg-white p-2 rounded-lg border border-gray-100 shadow-sm group">
                                                     <img src={item.product.image} className="w-10 h-10 rounded object-cover bg-gray-50" />

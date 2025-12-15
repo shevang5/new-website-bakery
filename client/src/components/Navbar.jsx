@@ -189,6 +189,12 @@ const Navbar = () => {
                 >
                   Login
                 </NavLink>
+                <NavLink
+                  to="/register"
+                  className="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg font-medium transition-colors text-sm"
+                >
+                  Register
+                </NavLink>
               </>
             )}
 
@@ -314,12 +320,20 @@ const Navbar = () => {
           )}
 
           {!user ? (
-            <NavLink to="/login" className={({ isActive }) =>
-              isActive ? "flex flex-col items-center justify-center py-2 px-3 text-red-600 font-semibold text-xs" : "flex flex-col items-center justify-center py-2 px-3 text-gray-600 hover:text-red-600 text-xs"
-            }>
-              <User className="w-6 h-6 mb-1" />
-              Login
-            </NavLink>
+            <>
+              <NavLink to="/login" className={({ isActive }) =>
+                isActive ? "flex flex-col items-center justify-center py-2 px-3 text-red-600 font-semibold text-xs" : "flex flex-col items-center justify-center py-2 px-3 text-gray-600 hover:text-red-600 text-xs"
+              }>
+                <User className="w-6 h-6 mb-1" />
+                Login
+              </NavLink>
+              <NavLink to="/register" className={({ isActive }) =>
+                isActive ? "flex flex-col items-center justify-center py-2 px-3 text-red-600 font-semibold text-xs" : "flex flex-col items-center justify-center py-2 px-3 text-gray-600 hover:text-red-600 text-xs"
+              }>
+                <SquarePlus className="w-6 h-6 mb-1" />
+                Register
+              </NavLink>
+            </>
           ) : null}
         </div>
       </div>

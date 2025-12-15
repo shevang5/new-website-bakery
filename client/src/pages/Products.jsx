@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { loadCart } from "../store/reducers/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../api/config";
 import { Search, ShoppingCart, Filter, Heart, ChefHat } from "lucide-react";
 
@@ -166,6 +166,7 @@ const Products = () => {
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const token = storedUser?.token;
 
@@ -174,7 +175,8 @@ const ProductCard = ({ product }) => {
     e.stopPropagation();
     try {
       if (!token) {
-        alert("❌ Please login first");
+        // alert("❌ Please login first");
+        navigate("/register");
         return;
       }
       const res = await axios.post("/cart", { productId: product._id },

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios"; // You forgot to import this
 
 const initialState = {
-  user: [0]
+  user: null
 };
 
 const userSlice = createSlice({
@@ -22,4 +22,3 @@ export default userSlice.reducer;
 export const { loadUser, removeUser } = userSlice.actions;
 
 
-  
