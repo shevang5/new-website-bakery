@@ -135,7 +135,7 @@ export default function MyOrders() {
             <p className="text-sm text-gray-400 mt-3">Order ID: {order._id}</p>
 
             {/* Cancel button for eligible orders */}
-            {(["pending", "processing"].includes(order.status)) && (
+            {order.status === "pending" && (
               <div className="mt-3 text-right">
                 <button
                   onClick={() => {
